@@ -1,0 +1,336 @@
+[
+  {
+    "no_invoice": "INV-202610-0082",
+    "no_cst": "CST-202611-001",
+    "nama": "Budi Santoso",
+    "no_hp": "081234567801",
+    "tipe": "bulanan",
+    "paket": "Home 10",
+    "periode": "2026-11",
+    "tanggal_terbit": "2026-11-01",
+    "tanggal_jatuh_tempo": "2026-11-10",
+    "items": [
+      { "nama": "Langganan Internet Home 10 - November 2026", "qty": 1, "harga": 125000 }
+    ],
+    "subtotal": 125000,
+    "diskon": 0,
+    "biaya_admin": 0,
+    "ppn": 0,
+    "total": 125000,
+    "status": "paid",
+    "metode_pembayaran": "transfer",
+    "tanggal_bayar": "2026-11-05",
+    "pppoe_username": "budi.santoso",
+    "router": "MikroTik-POP-Jembatan",
+    "wilayah": "Jembatan Layang",
+    "odp": "ODP-JL-03",
+    "audit_log": [
+      { "waktu": "2026-11-01 08:00:00", "aksi": "created", "catatan": "Generate massal periode 2026-11" },
+      { "waktu": "2026-11-01 08:01:00", "aksi": "sent_wa", "catatan": "Invoice dikirim via WhatsApp" },
+      { "waktu": "2026-11-05 14:23:00", "aksi": "paid", "catatan": "Pembayaran transfer Bank dicatat" }
+    ]
+  },
+  {
+    "no_invoice": "INV-202611-0083",
+    "no_cst": "CST-202611-002",
+    "nama": "Maya Fitriani",
+    "no_hp": "081234567802",
+    "tipe": "bulanan",
+    "paket": "Home 10",
+    "periode": "2026-11",
+    "tanggal_terbit": "2026-11-01",
+    "tanggal_jatuh_tempo": "2026-11-10",
+    "items": [
+      { "nama": "Langganan Internet Home 10 - November 2026", "qty": 1, "harga": 125000 },
+      { "nama": "Addon IP Publik", "qty": 1, "harga": 25000 }
+    ],
+    "subtotal": 150000,
+    "diskon": 0,
+    "biaya_admin": 2500,
+    "ppn": 0,
+    "total": 152500,
+    "status": "unpaid",
+    "metode_pembayaran": null,
+    "tanggal_bayar": null,
+    "pppoe_username": "maya.fitriani",
+    "router": "MikroTik-POP-Jembatan",
+    "wilayah": "Jembatan Layang",
+    "odp": "ODP-JL-05",
+    "audit_log": [
+      { "waktu": "2026-11-01 08:00:00", "aksi": "created", "catatan": "Generate massal periode 2026-11" },
+      { "waktu": "2026-11-01 08:02:00", "aksi": "sent_wa", "catatan": "Invoice dikirim via WhatsApp" }
+    ]
+  },
+  {
+    "no_invoice": "INV-202611-0084",
+    "no_cst": "CST-202611-003",
+    "nama": "Ahmad Hidayat",
+    "no_hp": "081234567803",
+    "tipe": "bulanan",
+    "paket": "Home 20",
+    "periode": "2026-11",
+    "tanggal_terbit": "2026-11-01",
+    "tanggal_jatuh_tempo": "2026-11-10",
+    "items": [
+      { "nama": "Langganan Internet Home 20 - November 2026", "qty": 1, "harga": 150000 }
+    ],
+    "subtotal": 150000,
+    "diskon": 0,
+    "biaya_admin": 0,
+    "ppn": 0,
+    "total": 150000,
+    "status": "unpaid",
+    "metode_pembayaran": null,
+    "tanggal_bayar": null,
+    "pppoe_username": "ahmad.hidayat",
+    "router": "MikroTik-POP-Ciledug",
+    "wilayah": "Ciledug",
+    "odp": "ODP-CL-02",
+    "audit_log": [
+      { "waktu": "2026-11-01 08:00:00", "aksi": "created", "catatan": "Generate massal periode 2026-11" }
+    ]
+  },
+  {
+    "no_invoice": "INV-202611-0085",
+    "no_cst": "CST-202611-004",
+    "nama": "Siti Rahmawati",
+    "no_hp": "081234567804",
+    "tipe": "bulanan",
+    "paket": "Home 30",
+    "periode": "2026-11",
+    "tanggal_terbit": "2026-11-01",
+    "tanggal_jatuh_tempo": "2026-11-10",
+    "items": [
+      { "nama": "Langganan Internet Home 30 - November 2026", "qty": 1, "harga": 200000 }
+    ],
+    "subtotal": 200000,
+    "diskon": 0,
+    "biaya_admin": 0,
+    "ppn": 0,
+    "total": 200000,
+    "status": "pending",
+    "metode_pembayaran": null,
+    "tanggal_bayar": null,
+    "pppoe_username": "siti.rahmawati",
+    "router": "MikroTik-POP-Ciledug",
+    "wilayah": "Ciledug",
+    "odp": "ODP-CL-02",
+    "audit_log": [
+      { "waktu": "2026-11-01 08:00:00", "aksi": "created", "catatan": "Generate massal periode 2026-11" },
+      { "waktu": "2026-11-08 09:15:00", "aksi": "wa_reply", "catatan": "Pelanggan klaim sudah transfer, menunggu verifikasi" }
+    ]
+  },
+  {
+    "no_invoice": "INV-202611-0086",
+    "no_cst": "CST-202611-005",
+    "nama": "Rudi Hartono",
+    "no_hp": "081234567805",
+    "tipe": "bulanan",
+    "paket": "Bisnis 50",
+    "periode": "2026-11",
+    "tanggal_terbit": "2026-11-01",
+    "tanggal_jatuh_tempo": "2026-11-10",
+    "items": [
+      { "nama": "Langganan Internet Bisnis 50 - November 2026", "qty": 1, "harga": 450000 },
+      { "nama": "Addon IP Publik", "qty": 1, "harga": 25000 }
+    ],
+    "subtotal": 475000,
+    "diskon": 25000,
+    "biaya_admin": 0,
+    "ppn": 0,
+    "total": 450000,
+    "status": "paid",
+    "metode_pembayaran": "cash",
+    "tanggal_bayar": "2026-11-02",
+    "pppoe_username": "rudi.hartono",
+    "router": "MikroTik-POP-Citayam",
+    "wilayah": "Citayam",
+    "odp": "ODP-CT-01",
+    "audit_log": [
+      { "waktu": "2026-11-01 08:00:00", "aksi": "created", "catatan": "Generate massal periode 2026-11" },
+      { "waktu": "2026-11-02 10:30:00", "aksi": "paid", "catatan": "Pembayaran cash dicatat" }
+    ]
+  },
+  {
+    "no_invoice": "INV-202611-0087",
+    "no_cst": "CST-202611-006",
+    "nama": "Dewi Lestari",
+    "no_hp": "081234567806",
+    "tipe": "bulanan",
+    "paket": "Home 20",
+    "periode": "2026-11",
+    "tanggal_terbit": "2026-11-01",
+    "tanggal_jatuh_tempo": "2026-11-10",
+    "items": [
+      { "nama": "Langganan Internet Home 20 - November 2026", "qty": 1, "harga": 150000 }
+    ],
+    "subtotal": 150000,
+    "diskon": 0,
+    "biaya_admin": 0,
+    "ppn": 0,
+    "total": 150000,
+    "status": "overdue",
+    "metode_pembayaran": null,
+    "tanggal_bayar": null,
+    "pppoe_username": "dewi.lestari",
+    "router": "MikroTik-POP-Ciledug",
+    "wilayah": "Ciledug",
+    "odp": "ODP-CL-04",
+    "audit_log": [
+      { "waktu": "2026-11-01 08:00:00", "aksi": "created", "catatan": "Generate massal periode 2026-11" },
+      { "waktu": "2026-11-04 08:00:00", "aksi": "sent_wa", "catatan": "Pengingat overdue dikirim via WhatsApp" }
+    ]
+  },
+  {
+    "no_invoice": "INV-202611-0088",
+    "no_cst": "CST-202611-007",
+    "nama": "Agus Wijaya",
+    "no_hp": "081234567807",
+    "tipe": "bulanan",
+    "paket": "Bisnis 100",
+    "periode": "2026-10",
+    "tanggal_terbit": "2026-10-01",
+    "tanggal_jatuh_tempo": "2026-10-10",
+    "items": [
+      { "nama": "Langganan Internet Bisnis 100 - Oktober 2026", "qty": 1, "harga": 750000 }
+    ],
+    "subtotal": 750000,
+    "diskon": 0,
+    "biaya_admin": 0,
+    "ppn": 0,
+    "total": 750000,
+    "status": "overdue",
+    "metode_pembayaran": null,
+    "tanggal_bayar": null,
+    "pppoe_username": "agus.wijaya",
+    "router": "MikroTik-POP-Citayam",
+    "wilayah": "Citayam",
+    "odp": "ODP-CT-01",
+    "audit_log": [
+      { "waktu": "2026-10-01 08:00:00", "aksi": "created", "catatan": "Generate massal periode 2026-10" },
+      { "waktu": "2026-10-11 09:00:00", "aksi": "sent_wa", "catatan": "Peringatan overdue risiko isolir" }
+    ]
+  },
+  {
+    "no_invoice": "INV-202611-0089",
+    "no_cst": "CST-202611-008",
+    "nama": "Rina Maulida",
+    "no_hp": "081234567808",
+    "tipe": "psb",
+    "paket": "Home 30",
+    "periode": "2026-11",
+    "tanggal_terbit": "2026-11-03",
+    "tanggal_jatuh_tempo": "2026-11-13",
+    "items": [
+      { "nama": "Biaya Instalasi Pasang Baru (Fiber ke Rumah)", "qty": 1, "harga": 250000 },
+      { "nama": "Perangkat Modem ONT Dual Band", "qty": 1, "harga": 350000 },
+      { "nama": "Langganan Prorata Home 30 - November 2026 (sisa 20 hari)", "qty": 1, "harga": 133333 }
+    ],
+    "subtotal": 733333,
+    "diskon": 0,
+    "biaya_admin": 5000,
+    "ppn": 0,
+    "total": 738333,
+    "status": "unpaid",
+    "metode_pembayaran": null,
+    "tanggal_bayar": null,
+    "pppoe_username": "rina.maulida",
+    "router": "MikroTik-POP-Jembatan",
+    "wilayah": "Jembatan Layang",
+    "odp": "ODP-JL-07",
+    "audit_log": [
+      { "waktu": "2026-11-03 09:00:00", "aksi": "created", "catatan": "Invoice manual pasang baru" },
+      { "waktu": "2026-11-03 09:05:00", "aksi": "sent_wa", "catatan": "Invoice dikirim via WhatsApp" }
+    ]
+  },
+  {
+    "no_invoice": "INV-202611-0090",
+    "no_cst": "CST-202611-008",
+    "nama": "Rina Maulida",
+    "no_hp": "081234567808",
+    "tipe": "tambahan",
+    "paket": "Home 30",
+    "periode": "2026-11",
+    "tanggal_terbit": "2026-11-05",
+    "tanggal_jatuh_tempo": "2026-11-15",
+    "items": [
+      { "nama": "Kabel dropcore ekstra 15 meter", "qty": 1, "harga": 75000 },
+      { "nama": "Jasa teknisi kunjungan lanjutan", "qty": 1, "harga": 50000 }
+    ],
+    "subtotal": 125000,
+    "diskon": 0,
+    "biaya_admin": 0,
+    "ppn": 0,
+    "total": 125000,
+    "status": "draft",
+    "metode_pembayaran": null,
+    "tanggal_bayar": null,
+    "pppoe_username": "rina.maulida",
+    "router": "MikroTik-POP-Jembatan",
+    "wilayah": "Jembatan Layang",
+    "odp": "ODP-JL-07",
+    "audit_log": [
+      { "waktu": "2026-11-05 13:00:00", "aksi": "created", "catatan": "Draft biaya tambahan technician visit" }
+    ]
+  },
+  {
+    "no_invoice": "INV-202611-0091",
+    "no_cst": "CST-202611-001",
+    "nama": "Budi Santoso",
+    "no_hp": "081234567801",
+    "tipe": "perangkat",
+    "paket": "Home 10",
+    "periode": "2026-11",
+    "tanggal_terbit": "2026-11-06",
+    "tanggal_jatuh_tempo": "2026-11-16",
+    "items": [
+      { "nama": "Router Wireless TP-Link Archer C6", "qty": 1, "harga": 280000 }
+    ],
+    "subtotal": 280000,
+    "diskon": 30000,
+    "biaya_admin": 0,
+    "ppn": 0,
+    "total": 250000,
+    "status": "paid",
+    "metode_pembayaran": "midtrans",
+    "tanggal_bayar": "2026-11-07",
+    "pppoe_username": "budi.santoso",
+    "router": "MikroTik-POP-Jembatan",
+    "wilayah": "Jembatan Layang",
+    "odp": "ODP-JL-03",
+    "audit_log": [
+      { "waktu": "2026-11-06 15:00:00", "aksi": "created", "catatan": "Pembelian perangkat" },
+      { "waktu": "2026-11-07 19:42:00", "aksi": "paid", "catatan": "Pembayaran Midtrans (QRIS) terkonfirmasi" }
+    ]
+  },
+  {
+    "no_invoice": "INV-202611-0092",
+    "no_cst": "CST-202611-006",
+    "nama": "Dewi Lestari",
+    "no_hp": "081234567806",
+    "tipe": "bulanan",
+    "paket": "Home 20",
+    "periode": "2026-09",
+    "tanggal_terbit": "2026-09-01",
+    "tanggal_jatuh_tempo": "2026-09-10",
+    "items": [
+      { "nama": "Langganan Internet Home 20 - September 2026", "qty": 1, "harga": 150000 }
+    ],
+    "subtotal": 150000,
+    "diskon": 0,
+    "biaya_admin": 0,
+    "ppn": 0,
+    "total": 150000,
+    "status": "void",
+    "metode_pembayaran": null,
+    "tanggal_bayar": null,
+    "pppoe_username": "dewi.lestari",
+    "router": "MikroTik-POP-Ciledug",
+    "wilayah": "Ciledug",
+    "odp": "ODP-CL-04",
+    "audit_log": [
+      { "waktu": "2026-09-01 08:00:00", "aksi": "created", "catatan": "Generate massal periode 2026-09" },
+      { "waktu": "2026-09-12 10:00:00", "aksi": "void", "catatan": "Dibatalkan: komplain kualitas layanan, credit note diterbitkan" }
+    ]
+  }
+]

@@ -1,0 +1,73 @@
+.paket-module { --paket-blue: #2563eb; --paket-navy: #102a43; --paket-muted: #64748b; --paket-line: #e5e7eb; }
+.paket-page-card { padding: 22px; border: 1px solid var(--paket-line); border-radius: 14px; background: #fff; box-shadow: 0 3px 12px rgb(15 23 42 / 4%); }
+.paket-breadcrumb { min-height: 24px; margin-bottom: 8px; }
+.paket-breadcrumb a { color: inherit; text-decoration: none; }
+.paket-module .page-heading { min-height: 0; margin-bottom: 16px; }
+.paket-module .page-heading-actions .btn-primary, .paket-form-footer .btn-primary { border-color: var(--paket-blue); background: var(--paket-blue); }
+.paket-summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.paket-summary-card { position: relative; display: flex; min-width: 0; min-height: 104px; align-items: flex-start; gap: 11px; padding: 15px; border: 1px solid var(--paket-line); border-top: 3px solid #dbe2ea; border-radius: 11px; background: #fff; text-align: left; transition: box-shadow .15s ease, transform .15s ease, border-color .15s ease; }
+button.paket-summary-card { cursor: pointer; }
+.paket-summary-card:hover, .paket-summary-card.is-selected { transform: translateY(-1px); border-top-color: var(--paket-blue); box-shadow: 0 5px 16px rgb(15 23 42 / 8%); }
+.paket-summary-total { border-top-color: #7c3aed; }
+.paket-summary-icon { display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center; border-radius: 9px; font-size: 16px; }
+.paket-summary-icon.is-blue { color: #2563eb; background: #eff6ff; }
+.paket-summary-icon.is-green { color: #16a34a; background: #f0fdf4; }
+.paket-summary-icon.is-gray { color: #64748b; background: #f1f5f9; }
+.paket-summary-icon.is-purple { color: #7c3aed; background: #f5f3ff; }
+.paket-summary-copy { display: grid; min-width: 0; gap: 3px; }
+.paket-summary-copy > span { color: var(--paket-muted); font-size: 10px; font-weight: 550; }
+.paket-summary-copy strong { color: var(--paket-navy); font-size: 22px; font-weight: 700; line-height: 1.1; }
+.paket-summary-copy small { color: #94a3b8; font-size: 9px; }
+.paket-summary-arrow { margin-left: auto; color: #94a3b8; font-size: 11px; }
+.paket-table-panel { border-top: 3px solid var(--paket-blue); }
+.paket-table-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 18px 20px 14px; border-bottom: 1px solid #f1f5f9; }
+.paket-table-heading h3 { margin: 0; color: var(--paket-navy); font-size: 13px; font-weight: 650; }
+.paket-table-heading p { margin: 4px 0 0; color: #94a3b8; font-size: 10px; }
+.paket-status-filter { display: grid; min-width: 155px; gap: 5px; color: #475569; font-size: 10px; font-weight: 600; }
+.paket-status-filter .form-select { height: 35px; min-height: 35px; border-color: #dbe2ea; border-radius: 7px; color: #334155; font-size: 11px; }
+.paket-status-filter .form-select:focus { border-color: #93b4fb; box-shadow: 0 0 0 3px rgb(37 99 235 / 10%); }
+.paket-table { min-width: 760px; }
+.paket-table-panel .dataTables_wrapper { padding: 12px 16px 14px; }
+.paket-table-panel .dataTables_wrapper .dt-search label, .paket-table-panel .dataTables_wrapper .dt-length label { color: #64748b; font-size: 10px; }
+.paket-table-panel .dataTables_wrapper .dt-search input, .paket-table-panel .dataTables_wrapper .dt-length select { min-height: 32px; border: 1px solid #dbe2ea; border-radius: 7px; color: #334155; font-size: 11px; }
+.paket-table-panel .dataTables_wrapper .dt-search input:focus, .paket-table-panel .dataTables_wrapper .dt-length select:focus { border-color: #93b4fb; outline: 0; box-shadow: 0 0 0 3px rgb(37 99 235 / 10%); }
+.paket-table-panel .table { min-width: 760px; }
+.paket-table-panel .table thead th { padding-top: 11px; padding-bottom: 11px; }
+.paket-table-panel .table tbody td { height: 52px; }
+.paket-table-panel .dataTables_wrapper .dt-paging .dt-paging-button { border-radius: 6px; font-size: 10px; }
+.paket-table-panel .dataTables_wrapper .dt-paging .dt-paging-button.current { border-color: var(--paket-blue); color: #fff !important; background: var(--paket-blue); }
+
+.paket-form-panel { max-width: 980px; padding: 0; }
+.paket-form-intro { padding: 18px 22px; border-bottom: 1px solid #f1f5f9; }
+.paket-form-intro h3 { margin: 0; color: var(--paket-navy); font-size: 14px; font-weight: 650; }
+.paket-form-intro p { margin: 5px 0 0; color: var(--paket-muted); font-size: 11px; }
+.paket-form-body { padding: 20px 22px; }
+.paket-form-body .form-label { margin-bottom: 6px; color: #334155; font-size: 11px; font-weight: 600; }
+.paket-form-body .form-control { min-height: 38px; border-color: #dbe2ea; border-radius: 8px; color: var(--paket-navy); font-size: 12px; }
+.paket-form-body textarea.form-control { min-height: 92px; }
+.paket-form-body .form-control:focus { border-color: #93b4fb; box-shadow: 0 0 0 3px rgb(37 99 235 / 10%); }
+.paket-form-body .form-check { display: flex; align-items: center; gap: 8px; min-height: 26px; }
+.paket-form-body .form-check-input { width: 16px; height: 16px; margin: 0; }
+.paket-form-body .form-check-label { color: #475569; font-size: 11px; }
+.paket-form-footer { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; padding-top: 16px; border-top: 1px solid #f1f5f9; }
+.paket-form-footer .btn { min-height: 38px; }
+
+@media (max-width: 1050px) {
+    .paket-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+    .paket-page-card { padding: 14px; border-radius: 12px; }
+    .paket-module .page-heading { align-items: flex-start; }
+    .paket-module .page-heading-actions { width: 100%; }
+    .paket-summary-grid { gap: 8px; }
+    .paket-summary-card { min-height: 94px; gap: 8px; padding: 11px 9px; }
+    .paket-summary-icon { width: 29px; height: 29px; flex-basis: 29px; font-size: 14px; }
+    .paket-summary-copy > span { font-size: 9px; }
+    .paket-summary-copy strong { font-size: 19px; }
+    .paket-summary-copy small { font-size: 8px; }
+    .paket-table-heading { align-items: stretch; flex-direction: column; padding: 14px; }
+    .paket-status-filter { width: 100%; }
+    .paket-table-panel .dataTables_wrapper { padding: 10px; }
+    .paket-form-intro, .paket-form-body { padding-right: 16px; padding-left: 16px; }
+    .paket-form-footer { align-items: stretch; flex-direction: column-reverse; }
+}

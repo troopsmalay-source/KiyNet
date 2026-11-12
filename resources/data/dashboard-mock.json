@@ -1,0 +1,159 @@
+{
+  "customerStats": {
+    "total": 128,
+    "aktif": 116,
+    "isolir": 8,
+    "menunggak": 14,
+    "pending": 5,
+    "churn": 4
+  },
+  "partnerStats": {
+    "aktif": 12,
+    "menungguVerifikasi": 3,
+    "kontrakSegeraBerakhir": 2,
+    "tagihanBandwidthTertunggak": 4,
+    "tagihanBandwidthNominal": 8750000
+  },
+  "billing": {
+    "invoiceTerbit": 412,
+    "lunas": 365,
+    "belumLunas": 47,
+    "jatuhTempoHariIni": 6,
+    "piutangAktif": 9840000
+  },
+  "revenue": {
+    "monthly": {
+      "labels": ["Jan 26", "Feb 26", "Mar 26", "Apr 26", "Mei 26", "Jun 26", "Jul 26", "Agu 26", "Sep 26", "Okt 26", "Nov 26", "Des 26"],
+      "retail": [142500000, 148200000, 151800000, 156400000, 160100000, 158900000, 164300000, 169800000, 173200000, 178600000, 184500000, 0],
+      "wholesale": [42000000, 42500000, 44000000, 44800000, 45200000, 46000000, 46500000, 47200000, 48000000, 48600000, 49400000, 0]
+    },
+    "daily": {
+      "labels": ["1 Nov", "2 Nov", "3 Nov", "4 Nov", "5 Nov", "6 Nov", "7 Nov", "8 Nov", "9 Nov", "10 Nov"],
+      "retail": [6200000, 4850000, 7100000, 5600000, 8950000, 6400000, 4300000, 3800000, 7250000, 5400000],
+      "wholesale": [1650000, 0, 1720000, 0, 1810000, 0, 0, 1740000, 0, 1680000]
+    }
+  },
+  "network": {
+    "totalRouter": 4,
+    "online": 3,
+    "offline": 1,
+    "avgCpuLoad": 38,
+    "avgLatencyMs": 18
+  },
+  "routers": [
+    {
+      "name": "Router Medan Kota",
+      "ip": "10.10.0.1",
+      "routeros": "7.15.2",
+      "uptime": "42d 6h 18m",
+      "status": "online",
+      "cpu": 32,
+      "latency": 14,
+      "api": "ok",
+      "ssh": "ok",
+      "location": "Medan Kota"
+    },
+    {
+      "name": "Router Medan Utara",
+      "ip": "10.10.0.2",
+      "routeros": "7.14.3",
+      "uptime": "28d 11h 02m",
+      "status": "online",
+      "cpu": 47,
+      "latency": 21,
+      "api": "ok",
+      "ssh": "ok",
+      "location": "Medan Utara"
+    },
+    {
+      "name": "Router Deli Serdang",
+      "ip": "10.10.0.3",
+      "routeros": "7.13.5",
+      "uptime": "15d 3h 45m",
+      "status": "degraded",
+      "cpu": 76,
+      "latency": 64,
+      "api": "ok",
+      "ssh": "ok",
+      "location": "Deli Serdang"
+    },
+    {
+      "name": "Router Binjai",
+      "ip": "10.10.0.4",
+      "routeros": "7.12.1",
+      "uptime": "0d 0h 00m",
+      "status": "offline",
+      "cpu": null,
+      "latency": null,
+      "api": "failed",
+      "ssh": "failed",
+      "location": "Binjai"
+    }
+  ],
+  "incidents": [
+    {
+      "priority": "high",
+      "type": "router_offline",
+      "title": "Router Binjai tidak terjangkau",
+      "message": "API dan SSH gagal terhubung. 18 pelanggan berpotensi terputus.",
+      "time": "2 menit lalu",
+      "meta": "10.10.0.4"
+    },
+    {
+      "priority": "high",
+      "type": "auto_isolir",
+      "title": "Gagal auto-isolir pelanggan",
+      "message": "Perintah isolir untuk KN-20261-00042 gagal dieksekusi (timeout).",
+      "time": "9 menit lalu",
+      "meta": "MikroTik API"
+    },
+    {
+      "priority": "high",
+      "type": "bandwidth",
+      "title": "Bandwidth Mitra Medan Utara > 85%",
+      "message": "Pemakaian 880 Mbps dari alokasi 1 Gbps. Berisiko throttling.",
+      "time": "14 menit lalu",
+      "meta": "MT-DEMO-002"
+    },
+    {
+      "priority": "medium",
+      "type": "payment",
+      "title": "Pembayaran QRIS berhasil",
+      "message": "INV-202611-00182 sebesar Rp 200.000 telah lunas.",
+      "time": "26 menit lalu",
+      "meta": "QRIS"
+    },
+    {
+      "priority": "medium",
+      "type": "latency",
+      "title": "Latensi tinggi Router Deli Serdang",
+      "message": "Rata-rata ping 64 ms selama 10 menit terakhir.",
+      "time": "38 menit lalu",
+      "meta": "10.10.0.3"
+    },
+    {
+      "priority": "medium",
+      "type": "payment",
+      "title": "Transfer manual menunggu verifikasi",
+      "message": "INV-202611-00175 sebesar Rp 150.000 perlu diverifikasi admin.",
+      "time": "52 menit lalu",
+      "meta": "Transfer Bank"
+    },
+    {
+      "priority": "low",
+      "type": "payment",
+      "title": "Pembayaran Virtual Account berhasil",
+      "message": "INV-202611-00168 sebesar Rp 275.000 telah lunas.",
+      "time": "1 jam lalu",
+      "meta": "Virtual Account"
+    },
+    {
+      "priority": "low",
+      "type": "reconnect",
+      "title": "Auto-reconnect berhasil",
+      "message": "Sesi PPPoE dewi.demo002 tersambung kembali setelah 2 percobaan.",
+      "time": "2 jam lalu",
+      "meta": "Router Medan Kota"
+    }
+  ]
+}

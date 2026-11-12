@@ -1,0 +1,72 @@
+.mitra-module { --mitra-blue: #2563eb; --mitra-navy: #102a43; --mitra-muted: #64748b; --mitra-line: #e5e7eb; }
+.mitra-page-card { padding: 22px; border: 1px solid var(--mitra-line); border-radius: 14px; background: #fff; box-shadow: 0 3px 12px rgb(15 23 42 / 4%); }
+.mitra-breadcrumb { min-height: 24px; margin-bottom: 8px; }
+.mitra-breadcrumb a { color: inherit; text-decoration: none; }
+.mitra-module .page-heading { min-height: 0; margin-bottom: 16px; }
+.mitra-module .page-heading-actions .btn { border-color: var(--mitra-blue); background: var(--mitra-blue); }
+.mitra-summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.mitra-summary-card { position: relative; display: flex; min-width: 0; min-height: 104px; align-items: flex-start; gap: 11px; padding: 15px; border: 1px solid var(--mitra-line); border-top: 3px solid #dbe2ea; border-radius: 11px; background: #fff; text-align: left; transition: box-shadow .15s ease, transform .15s ease, border-color .15s ease; }
+button.mitra-summary-card { cursor: pointer; }
+.mitra-summary-card:hover, .mitra-summary-card.is-selected { transform: translateY(-1px); border-top-color: var(--mitra-blue); box-shadow: 0 5px 16px rgb(15 23 42 / 8%); }
+.mitra-summary-total { border-top-color: #7c3aed; }
+.mitra-summary-icon { display: grid; width: 34px; height: 34px; flex: 0 0 34px; place-items: center; border-radius: 9px; font-size: 16px; }
+.mitra-summary-icon.is-blue { color: #2563eb; background: #eff6ff; }
+.mitra-summary-icon.is-green { color: #16a34a; background: #f0fdf4; }
+.mitra-summary-icon.is-gray { color: #64748b; background: #f1f5f9; }
+.mitra-summary-icon.is-purple { color: #7c3aed; background: #f5f3ff; }
+.mitra-summary-copy { display: grid; min-width: 0; gap: 3px; }
+.mitra-summary-copy > span { color: var(--mitra-muted); font-size: 10px; font-weight: 550; }
+.mitra-summary-copy strong { color: var(--mitra-navy); font-size: 22px; font-weight: 700; line-height: 1.1; }
+.mitra-summary-copy small { color: #94a3b8; font-size: 9px; }
+.mitra-summary-arrow { margin-left: auto; color: #94a3b8; font-size: 11px; }
+.mitra-table-panel { border-top: 3px solid var(--mitra-blue); }
+.mitra-table-heading { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 18px 20px 14px; border-bottom: 1px solid #f1f5f9; }
+.mitra-table-heading h3 { margin: 0; color: var(--mitra-navy); font-size: 13px; font-weight: 650; }
+.mitra-table-heading p { margin: 4px 0 0; color: #94a3b8; font-size: 10px; }
+.mitra-status-filter { display: grid; min-width: 155px; gap: 5px; color: #475569; font-size: 10px; font-weight: 600; }
+.mitra-status-filter .form-select { height: 35px; min-height: 35px; border-color: #dbe2ea; border-radius: 7px; color: #334155; font-size: 11px; }
+.mitra-status-filter .form-select:focus { border-color: #93b4fb; box-shadow: 0 0 0 3px rgb(37 99 235 / 10%); }
+.mitra-table { min-width: 900px; }
+.mitra-table-panel .dataTables_wrapper { padding: 12px 16px 14px; }
+.mitra-table-panel .dataTables_wrapper .dt-search label, .mitra-table-panel .dataTables_wrapper .dt-length label { color: #64748b; font-size: 10px; }
+.mitra-table-panel .dataTables_wrapper .dt-search input, .mitra-table-panel .dataTables_wrapper .dt-length select { min-height: 32px; border: 1px solid #dbe2ea; border-radius: 7px; color: #334155; font-size: 11px; }
+.mitra-table-panel .dataTables_wrapper .dt-search input:focus, .mitra-table-panel .dataTables_wrapper .dt-length select:focus { border-color: #93b4fb; outline: 0; box-shadow: 0 0 0 3px rgb(37 99 235 / 10%); }
+.mitra-table-panel .table { min-width: 900px; }
+.mitra-table-panel .table thead th { padding-top: 11px; padding-bottom: 11px; }
+.mitra-table-panel .table tbody td { height: 52px; }
+.mitra-table-panel .dataTables_wrapper .dt-paging .dt-paging-button { border-radius: 6px; font-size: 10px; }
+.mitra-table-panel .dataTables_wrapper .dt-paging .dt-paging-button.current { border-color: var(--mitra-blue); color: #fff !important; background: var(--mitra-blue); }
+
+.mitra-form-panel { max-width: 980px; padding: 0; }
+.mitra-form-intro { padding: 18px 22px; border-bottom: 1px solid #f1f5f9; }
+.mitra-form-intro h3 { margin: 0; color: var(--mitra-navy); font-size: 14px; font-weight: 650; }
+.mitra-form-intro p { margin: 5px 0 0; color: var(--mitra-muted); font-size: 11px; }
+.mitra-form-body { padding: 20px 22px; }
+.mitra-form-body .form-label { margin-bottom: 6px; color: #334155; font-size: 11px; font-weight: 600; }
+.mitra-form-body .form-control, .mitra-form-body .form-select { min-height: 38px; border-color: #dbe2ea; border-radius: 8px; color: var(--mitra-navy); font-size: 12px; }
+.mitra-form-body textarea.form-control { min-height: 92px; }
+.mitra-form-body .form-control:focus, .mitra-form-body .form-select:focus { border-color: #93b4fb; box-shadow: 0 0 0 3px rgb(37 99 235 / 10%); }
+.mitra-form-footer { display: flex; justify-content: space-between; gap: 10px; padding-top: 16px; border-top: 1px solid #f1f5f9; }
+.mitra-form-footer .btn { min-height: 38px; }
+.mitra-form-footer .btn-primary { border-color: var(--mitra-blue); background: var(--mitra-blue); }
+.mitra-field-note { margin: 5px 0 0; color: #94a3b8; font-size: 10px; }
+
+@media (max-width: 1050px) {
+    .mitra-summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+    .mitra-page-card { padding: 14px; border-radius: 12px; }
+    .mitra-module .page-heading { align-items: flex-start; }
+    .mitra-module .page-heading-actions { width: 100%; }
+    .mitra-summary-grid { gap: 8px; }
+    .mitra-summary-card { min-height: 94px; gap: 8px; padding: 11px 9px; }
+    .mitra-summary-icon { width: 29px; height: 29px; flex-basis: 29px; font-size: 14px; }
+    .mitra-summary-copy > span { font-size: 9px; }
+    .mitra-summary-copy strong { font-size: 19px; }
+    .mitra-summary-copy small { font-size: 8px; }
+    .mitra-table-heading { align-items: stretch; flex-direction: column; padding: 14px; }
+    .mitra-status-filter { width: 100%; }
+    .mitra-table-panel .dataTables_wrapper { padding: 10px; }
+    .mitra-form-intro, .mitra-form-body { padding-right: 16px; padding-left: 16px; }
+    .mitra-form-footer { align-items: stretch; flex-direction: column-reverse; }
+}

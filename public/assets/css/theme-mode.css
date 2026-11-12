@@ -1,0 +1,239 @@
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --navy: #e2e8f0;
+    --navy-deep: #0b1220;
+    --ink: #e2e8f0;
+    --muted: #a7b4c6;
+    --line: #334155;
+    --page: #0f172a;
+    --dash-ink: #e2e8f0;
+    --dash-muted: #a7b4c6;
+    --dash-border: #334155;
+    --dash-bg: #0f172a;
+    --customer-navy: #e2e8f0;
+    --customer-muted: #a7b4c6;
+    --customer-line: #334155;
+    --mitra-navy: #e2e8f0;
+    --mitra-muted: #a7b4c6;
+    --mitra-line: #334155;
+    --paket-navy: #e2e8f0;
+    --paket-muted: #a7b4c6;
+    --paket-line: #334155;
+    --langganan-navy: #e2e8f0;
+    --langganan-muted: #a7b4c6;
+    --langganan-line: #334155;
+}
+
+:root[data-theme="dark"] body.dashboard-view { --dash-ink: #e2e8f0; --dash-muted: #a7b4c6; --dash-border: #334155; --dash-bg: #0f172a; color: #e2e8f0; background: #0f172a; }
+:root[data-theme="dark"] .customer-module { --customer-navy: #e2e8f0; --customer-muted: #a7b4c6; --customer-line: #334155; }
+:root[data-theme="dark"] .mitra-module { --mitra-navy: #e2e8f0; --mitra-muted: #a7b4c6; --mitra-line: #334155; }
+:root[data-theme="dark"] .paket-module { --paket-navy: #e2e8f0; --paket-muted: #a7b4c6; --paket-line: #334155; }
+:root[data-theme="dark"] .langganan-module { --langganan-navy: #e2e8f0; --langganan-muted: #a7b4c6; --langganan-line: #334155; }
+:root[data-theme="dark"] .topbar { border-color: #334155; background: #172235; }
+:root[data-theme="dark"] .topbar-title,
+:root[data-theme="dark"] .profile-name { color: #e2e8f0; }
+:root[data-theme="dark"] .profile-role,
+:root[data-theme="dark"] .profile-chevron,
+:root[data-theme="dark"] .icon-button { color: #cbd5e1; }
+:root[data-theme="dark"] .icon-button:hover { color: #93c5fd; background: #26364d; }
+:root[data-theme="dark"] .topbar-divider { background: #334155; }
+:root[data-theme="dark"] .profile-menu,
+:root[data-theme="dark"] .dropdown-menu { border-color: #334155; background: #1e293b; }
+:root[data-theme="dark"] .profile-menu .dropdown-item { color: #e2e8f0; }
+:root[data-theme="dark"] .profile-menu .dropdown-item:hover { color: #fff; background: #334155; }
+:root[data-theme="dark"] .dropdown-divider { border-color: #475569; }
+:root[data-theme="dark"] .topbar-search,
+:root[data-theme="dark"] .intro-date,
+:root[data-theme="dark"] .period-select,
+:root[data-theme="dark"] .chart-filter { border-color: #475569; color: #cbd5e1; background-color: #1e293b; }
+:root[data-theme="dark"] .topbar-search kbd { border-color: #475569; color: #cbd5e1; background: #26364d; }
+:root[data-theme="dark"] .app-sidebar { background: #0b1628; }
+:root[data-theme="dark"] .dashboard-main-card,
+:root[data-theme="dark"] .mitra-page-card,
+:root[data-theme="dark"] .paket-page-card,
+:root[data-theme="dark"] .langganan-page-card,
+:root[data-theme="dark"] .panel-card,
+:root[data-theme="dark"] .flow-card,
+:root[data-theme="dark"] .dashboard-stat,
+:root[data-theme="dark"] .dashboard-card,
+:root[data-theme="dark"] .page-panel,
+:root[data-theme="dark"] .page-content > .card,
+:root[data-theme="dark"] .customer-page-card,
+:root[data-theme="dark"] .customer-stat,
+:root[data-theme="dark"] .customer-table-card,
+:root[data-theme="dark"] .customer-detail-item,
+:root[data-theme="dark"] .customer-actions-popover,
+:root[data-theme="dark"] .mitra-summary-card,
+:root[data-theme="dark"] .paket-summary-card,
+:root[data-theme="dark"] .langganan-summary-card,
+:root[data-theme="dark"] .tagihan-summary-card,
+:root[data-theme="dark"] .pengingat-tab,
+:root[data-theme="dark"] .customer-import-preview,
+:root[data-theme="dark"] .modal-content,
+:root[data-theme="dark"] .offcanvas,
+:root[data-theme="dark"] .list-group-item { border-color: #334155; color: #e2e8f0; background-color: #1e293b; }
+:root[data-theme="dark"] .revenue-card,
+:root[data-theme="dark"] .customer-table-card .dt-container > .row:not(.dt-layout-table),
+:root[data-theme="dark"] .customer-table-card .dt-container > .row:last-child,
+:root[data-theme="dark"] .recent-invoices,
+:root[data-theme="dark"] .customer-chart-card,
+:root[data-theme="dark"] .recent-payments,
+:root[data-theme="dark"] .due-card,
+:root[data-theme="dark"] .network-card,
+:root[data-theme="dark"] .activity-card,
+:root[data-theme="dark"] .customer-profile-summary,
+:root[data-theme="dark"] .customer-detail-item,
+:root[data-theme="dark"] .customer-table tbody td { background-color: #1e293b; }
+:root[data-theme="dark"] .card-heading h3,
+:root[data-theme="dark"] .panel-heading h2,
+:root[data-theme="dark"] .page-heading h2,
+:root[data-theme="dark"] .page-content h3,
+:root[data-theme="dark"] .dashboard-intro h2,
+:root[data-theme="dark"] .dashboard-stat-value,
+:root[data-theme="dark"] .table-primary-text,
+:root[data-theme="dark"] .amount-cell,
+:root[data-theme="dark"] .customer-stat-copy strong,
+:root[data-theme="dark"] .customer-name-cell,
+:root[data-theme="dark"] .mitra-summary-copy strong,
+:root[data-theme="dark"] .paket-summary-copy strong,
+:root[data-theme="dark"] .langganan-summary-copy strong,
+:root[data-theme="dark"] .tagihan-summary-copy strong,
+:root[data-theme="dark"] .tagihan-table-heading h3,
+:root[data-theme="dark"] .tagihan-form-intro h3,
+:root[data-theme="dark"] .tagihan-detail-heading h3,
+:root[data-theme="dark"] .pengingat-table-heading h3,
+:root[data-theme="dark"] .tagihan-facts strong,
+:root[data-theme="dark"] .tagihan-totals strong,
+:root[data-theme="dark"] .mitra-form-intro h3 { color: #e2e8f0 !important; }
+:root[data-theme="dark"] .paket-form-intro h3 { color: #e2e8f0 !important; }
+:root[data-theme="dark"] .langganan-form-intro h3 { color: #e2e8f0 !important; }
+:root[data-theme="dark"] .dashboard-intro p:not(.eyebrow),
+:root[data-theme="dark"] .card-heading p,
+:root[data-theme="dark"] .stat-context,
+:root[data-theme="dark"] .page-description,
+:root[data-theme="dark"] .customer-stat-copy > span,
+:root[data-theme="dark"] .customer-table-heading p,
+:root[data-theme="dark"] .mitra-table-heading p,
+:root[data-theme="dark"] .mitra-form-intro p { color: #a7b4c6; }
+:root[data-theme="dark"] .paket-form-intro p { color: #a7b4c6; }
+:root[data-theme="dark"] .langganan-form-intro p { color: #a7b4c6; }
+:root[data-theme="dark"] .tagihan-page-card,
+:root[data-theme="dark"] .pengingat-page-card,
+:root[data-theme="dark"] .tagihan-table-panel,
+:root[data-theme="dark"] .pengingat-table-panel,
+:root[data-theme="dark"] .tagihan-form-panel,
+:root[data-theme="dark"] .tagihan-detail-panel,
+:root[data-theme="dark"] .tagihan-history-panel,
+:root[data-theme="dark"] .tagihan-payment-panel { border-color: #334155; color: #e2e8f0; background-color: #1e293b; }
+:root[data-theme="dark"] .tagihan-summary-card { border-color: #334155; background-color: #1e293b; }
+:root[data-theme="dark"] .pengingat-tab { border-color: #334155; color: #cbd5e1; background-color: #1e293b; }
+:root[data-theme="dark"] .pengingat-tab.is-selected { border-color: #2563eb; color: #bfdbfe; background-color: #172554; }
+:root[data-theme="dark"] .pengingat-tab strong { color: #e2e8f0; background-color: #334155; }
+:root[data-theme="dark"] .pengingat-tab.is-selected strong { color: #fff; background-color: #1677e8; }
+:root[data-theme="dark"] .tagihan-form-intro,
+:root[data-theme="dark"] .tagihan-detail-heading,
+:root[data-theme="dark"] .tagihan-form-footer,
+:root[data-theme="dark"] .tagihan-totals .is-total { border-color: #334155; }
+:root[data-theme="dark"] .tagihan-table-heading p,
+:root[data-theme="dark"] .pengingat-today,
+:root[data-theme="dark"] .pengingat-table-heading p,
+:root[data-theme="dark"] .tagihan-form-intro p,
+:root[data-theme="dark"] .tagihan-detail-heading p,
+:root[data-theme="dark"] .tagihan-facts span,
+:root[data-theme="dark"] .tagihan-totals span,
+:root[data-theme="dark"] .tagihan-form-body .form-label { color: #a7b4c6; }
+:root[data-theme="dark"] .tagihan-line-table,
+:root[data-theme="dark"] .tagihan-history-panel .table { --bs-table-bg: #1e293b; --bs-table-color: #e2e8f0; --bs-table-border-color: #334155; }
+:root[data-theme="dark"] .tagihan-form-body .form-control,
+:root[data-theme="dark"] .tagihan-form-body .form-select { border-color: #475569; color: #e2e8f0; background-color: #0f172a; }
+:root[data-theme="dark"] .dashboard-table,
+:root[data-theme="dark"] .customer-table,
+:root[data-theme="dark"] .page-content .table { --bs-table-color: #cbd5e1; --bs-table-bg: #1e293b; --bs-table-border-color: #334155; --bs-table-hover-color: #f8fafc; --bs-table-hover-bg: #29374b; }
+:root[data-theme="dark"] .dashboard-table thead th,
+:root[data-theme="dark"] .page-content .table thead th,
+:root[data-theme="dark"] .customer-table thead th { border-color: #334155; color: #a7b4c6; background: #172235; }
+:root[data-theme="dark"] .dashboard-table tbody td,
+:root[data-theme="dark"] .page-content .table tbody td,
+:root[data-theme="dark"] .customer-table tbody td { border-color: #334155; color: #cbd5e1; background: #1e293b; }
+:root[data-theme="dark"] .customer-table tbody tr:hover td { background: #29374b; }
+:root[data-theme="dark"] .dataTables_wrapper,
+:root[data-theme="dark"] .dataTables_wrapper .dt-info,
+:root[data-theme="dark"] .dataTables_wrapper .dt-search,
+:root[data-theme="dark"] .dataTables_wrapper .dt-length { color: #cbd5e1; }
+:root[data-theme="dark"] .dataTables_wrapper .dt-search input,
+:root[data-theme="dark"] .dataTables_wrapper .dt-length select,
+:root[data-theme="dark"] .mitra-status-filter .form-select,
+:root[data-theme="dark"] .paket-status-filter .form-select,
+:root[data-theme="dark"] .langganan-status-filter .form-select,
+:root[data-theme="dark"] .customer-field .form-control,
+:root[data-theme="dark"] .customer-field .form-select,
+:root[data-theme="dark"] .customer-bulk-controls .form-select,
+:root[data-theme="dark"] .customer-page-size .form-select,
+:root[data-theme="dark"] .mitra-form-body .form-control,
+:root[data-theme="dark"] .mitra-form-body .form-select,
+:root[data-theme="dark"] .paket-form-body .form-control,
+:root[data-theme="dark"] .langganan-form-body .form-control,
+:root[data-theme="dark"] .langganan-form-body .form-select,
+:root[data-theme="dark"] .page-content .form-control,
+:root[data-theme="dark"] .page-content .form-select { border-color: #475569; color: #e2e8f0; background-color: #172235; }
+:root[data-theme="dark"] .dataTables_wrapper .dt-search input::placeholder,
+:root[data-theme="dark"] .customer-field .form-control::placeholder,
+:root[data-theme="dark"] .page-content .form-control::placeholder { color: #94a3b8; }
+:root[data-theme="dark"] .customer-field,
+:root[data-theme="dark"] .customer-field > span:first-child,
+:root[data-theme="dark"] .mitra-status-filter,
+:root[data-theme="dark"] .paket-status-filter,
+:root[data-theme="dark"] .langganan-status-filter,
+:root[data-theme="dark"] .langganan-form-body .form-label,
+:root[data-theme="dark"] .langganan-form-body .form-check-label,
+:root[data-theme="dark"] .paket-form-body .form-label,
+:root[data-theme="dark"] .paket-form-body .form-check-label,
+:root[data-theme="dark"] .mitra-form-body .form-label,
+:root[data-theme="dark"] .page-content .form-label { color: #cbd5e1; }
+:root[data-theme="dark"] .customer-sort { color: #cbd5e1; }
+:root[data-theme="dark"] .customer-row-actions .btn,
+:root[data-theme="dark"] .customer-actions-menu > summary,
+:root[data-theme="dark"] .customer-pagination button { border-color: #475569; color: #cbd5e1; background: #172235; }
+:root[data-theme="dark"] .customer-actions-popover button { color: #cbd5e1; background: #1e293b; }
+:root[data-theme="dark"] .customer-actions-popover button:hover { color: #fff; background: #334155; }
+:root[data-theme="dark"] .customer-table-footer,
+:root[data-theme="dark"] .customer-profile-summary,
+:root[data-theme="dark"] .customer-detail-item { border-color: #334155; }
+:root[data-theme="dark"] .mitra-table-heading,
+:root[data-theme="dark"] .paket-table-heading,
+:root[data-theme="dark"] .mitra-form-intro,
+:root[data-theme="dark"] .mitra-form-footer,
+:root[data-theme="dark"] .paket-form-intro,
+:root[data-theme="dark"] .paket-form-footer,
+:root[data-theme="dark"] .langganan-table-heading,
+:root[data-theme="dark"] .langganan-form-intro,
+:root[data-theme="dark"] .langganan-form-footer,
+:root[data-theme="dark"] .page-panel-header { border-color: #334155; }
+:root[data-theme="dark"] .customer-import-note { color: #bfdbfe; background: #1e3a5f; }
+:root[data-theme="dark"] .status-success,
+:root[data-theme="dark"] .status-aktif,
+:root[data-theme="dark"] .customer-status-badge.status-aktif { color: #86efac; background: #123528; }
+:root[data-theme="dark"] .status-info { color: #bfdbfe; background: #1e3a5f; }
+:root[data-theme="dark"] .status-warning { color: #fcd34d; background: #422d12; }
+:root[data-theme="dark"] .status-danger,
+:root[data-theme="dark"] .customer-status-badge.status-terisolasi { color: #fca5a5; background: #451f28; }
+:root[data-theme="dark"] .status-neutral,
+:root[data-theme="dark"] .status-inactive,
+:root[data-theme="dark"] .customer-status-badge.status-nonaktif { color: #cbd5e1; background: #334155; }
+:root[data-theme="dark"] .status-badge.is-warning { color: #fcd34d; background: #422d12; }
+:root[data-theme="dark"] .status-badge.is-danger { color: #fca5a5; background: #451f28; }
+:root[data-theme="dark"] .status-badge.is-active { color: #86efac; background: #123528; }
+:root[data-theme="dark"] .status-badge.is-inactive { color: #cbd5e1; background: #334155; }
+:root[data-theme="dark"] .btn-outline-secondary { border-color: #475569; color: #cbd5e1; }
+:root[data-theme="dark"] .btn-outline-secondary:hover { border-color: #64748b; color: #fff; background: #334155; }
+:root[data-theme="dark"] .modal-header,
+:root[data-theme="dark"] .modal-footer { border-color: #334155; }
+:root[data-theme="dark"] .btn-close { filter: invert(1) grayscale(100%) brightness(200%); }
+:root[data-theme="dark"] .toast { --bs-toast-bg: #1e293b; --bs-toast-color: #e2e8f0; --bs-toast-header-bg: #172235; --bs-toast-header-color: #e2e8f0; }
+:root[data-theme="dark"] .alert-success { --bs-alert-bg: #123528; --bs-alert-color: #86efac; --bs-alert-border-color: #166534; }
+:root[data-theme="dark"] .alert-danger { --bs-alert-bg: #451f28; --bs-alert-color: #fca5a5; --bs-alert-border-color: #991b1b; }
+:root[data-theme="dark"] .profile-menu .dropdown-item.text-danger { color: #fca5a5 !important; }
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-toggle { transition: none; }
+}

@@ -1,0 +1,778 @@
+{
+    "generated_at": "2026-11-10",
+    "customers": [
+        {
+            "id": "CST-202611-001",
+            "nama": "Andi Saputra",
+            "no_hp": "081234567801",
+            "email": "andi.saputra@example.test",
+            "alamat": "Jl. Sisingamangaraja No. 12, Kel. Sudirman, Kec. Medan Kota",
+            "wilayah": "POP Medan Kota",
+            "cluster": "Cluster Sudirman",
+            "odp": "ODP-MK-01",
+            "latitude": 3.5852,
+            "longitude": 98.675,
+            "catatan": "Pelanggan fiber dedicated, jalur ODP-MK-01 port 4. Hubungi via WhatsApp sebelum kunjungan teknisi.",
+            "status": "Aktif",
+            "status_since": "2026-11-02",
+            "pppoe_username": "andi.saputra",
+            "pppoe_password": "Knt#Andi2026",
+            "paket": "KiNet Home 20",
+            "bandwidth": "20 Mbps / 5 Mbps",
+            "profile": "home-20m",
+            "router": "Router Medan Kota",
+            "router_ip": "10.10.0.1",
+            "rate_limit": "20M/5M",
+            "queue": "queue-andi-saputra",
+            "tanggal_aktivasi": "2026-10-12",
+            "jatuh_tempo": "2026-11-12",
+            "mitra": "Mitra Medan Kota",
+            "status_logs": [
+                {
+                    "at": "2026-11-02 09:14",
+                    "from": "Isolir",
+                    "to": "Aktif",
+                    "by": "Admin KiNet",
+                    "note": "Pembayaran diterima via QRIS, layanan dipulihkan."
+                },
+                {
+                    "at": "2026-10-12 10:20",
+                    "from": "Pending",
+                    "to": "Aktif",
+                    "by": "Teknisi Medan",
+                    "note": "Instalasi selesai, ONT terdaftar pada ODP-MK-01."
+                }
+            ],
+            "invoices": [
+                {
+                    "no": "INV-202611-001",
+                    "periode": "Nov 2026",
+                    "nominal": 150000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-11-12"
+                },
+                {
+                    "no": "INV-202610-001",
+                    "periode": "Okt 2026",
+                    "nominal": 150000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-10-12"
+                },
+                {
+                    "no": "INV-202609-001",
+                    "periode": "Sep 2026",
+                    "nominal": 150000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-09-12"
+                }
+            ],
+            "payments": [
+                {
+                    "tanggal": "2026-11-02 09:10",
+                    "metode": "QRIS",
+                    "referensi": "TRX-QRIS-88231",
+                    "nominal": 150000
+                },
+                {
+                    "tanggal": "2026-10-05 14:22",
+                    "metode": "Midtrans",
+                    "referensi": "TRX-MDR-77120",
+                    "nominal": 150000
+                }
+            ],
+            "package_changes": [
+                {
+                    "tanggal": "2026-10-12",
+                    "from": "KiNet Home 10",
+                    "to": "KiNet Home 20",
+                    "by": "Admin KiNet",
+                    "note": "Upgrade paket saat instalasi."
+                }
+            ],
+            "isolation_logs": [
+                {
+                    "at": "2026-11-02 09:20",
+                    "type": "Manual",
+                    "status": "Dipulihkan",
+                    "response": "200 OK — PPP secret enabled, queue diaktifkan kembali",
+                    "note": "Pemulihan setelah pembayaran QRIS diterima."
+                },
+                {
+                    "at": "2026-11-01 00:05",
+                    "type": "Otomatis",
+                    "status": "Diisolasi",
+                    "response": "200 OK — profile isolir-1m diterapkan",
+                    "note": "Invoice INV-202610-001 melewati jatuh tempo."
+                }
+            ],
+            "tickets": [
+                {
+                    "no": "TKT-202610-014",
+                    "issue": "Internet lambat pada malam hari",
+                    "status": "Resolved",
+                    "created_at": "2026-10-20",
+                    "closed_at": "2026-10-22"
+                },
+                {
+                    "no": "TKT-202607-003",
+                    "issue": "ONT mati setelah hujan deras",
+                    "status": "Resolved",
+                    "created_at": "2026-07-11",
+                    "closed_at": "2026-07-11"
+                }
+            ]
+        },
+        {
+            "id": "CST-202611-002",
+            "nama": "Siti Rahmawati",
+            "no_hp": "081234567802",
+            "email": "siti.rahmawati@example.test",
+            "alamat": "Jl. Garu II No. 45, Kel. Harjosari, Kec. Medan Amplas",
+            "wilayah": "POP Medan Kota",
+            "cluster": "Cluster Amplas",
+            "odp": "ODP-MK-02",
+            "latitude": 3.541,
+            "longitude": 98.689,
+            "catatan": "Sering membayar melalui QRIS. Konfirmasi tagihan via WhatsApp.",
+            "status": "Menunggak",
+            "status_since": "2026-11-08",
+            "pppoe_username": "siti.rahmawati",
+            "pppoe_password": "Knt#Siti2026",
+            "paket": "KiNet Home 30",
+            "bandwidth": "30 Mbps / 10 Mbps",
+            "profile": "home-30m",
+            "router": "Router Medan Kota",
+            "router_ip": "10.10.0.1",
+            "rate_limit": "30M/10M",
+            "queue": "queue-siti-rahmawati",
+            "tanggal_aktivasi": "2026-03-08",
+            "jatuh_tempo": "2026-11-10",
+            "mitra": "Mitra Medan Kota",
+            "status_logs": [
+                {
+                    "at": "2026-11-08 00:10",
+                    "from": "Aktif",
+                    "to": "Menunggak",
+                    "by": "Sistem Penagihan",
+                    "note": "Invoice Nov 2026 belum dibayar setelah jatuh tempo."
+                },
+                {
+                    "at": "2026-03-08 13:40",
+                    "from": "Pending",
+                    "to": "Aktif",
+                    "by": "Teknisi Medan",
+                    "note": "Aktivasi selesai, perangkat ONT terpasang."
+                }
+            ],
+            "invoices": [
+                {
+                    "no": "INV-202611-002",
+                    "periode": "Nov 2026",
+                    "nominal": 200000,
+                    "status": "Menunggak",
+                    "jatuh_tempo": "2026-11-10"
+                },
+                {
+                    "no": "INV-202610-002",
+                    "periode": "Okt 2026",
+                    "nominal": 200000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-10-10"
+                },
+                {
+                    "no": "INV-202609-002",
+                    "periode": "Sep 2026",
+                    "nominal": 200000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-09-10"
+                }
+            ],
+            "payments": [
+                {
+                    "tanggal": "2026-10-08 13:05",
+                    "metode": "Manual",
+                    "referensi": "TRX-MAN-55201",
+                    "nominal": 200000
+                },
+                {
+                    "tanggal": "2026-09-06 08:44",
+                    "metode": "QRIS",
+                    "referensi": "TRX-QRIS-54122",
+                    "nominal": 200000
+                }
+            ],
+            "package_changes": [
+                {
+                    "tanggal": "2026-06-14",
+                    "from": "KiNet Home 20",
+                    "to": "KiNet Home 30",
+                    "by": "Admin KiNet",
+                    "note": "Permintaan upgrade dari pelanggan."
+                }
+            ],
+            "isolation_logs": [
+                {
+                    "at": "2026-11-09 00:05",
+                    "type": "Otomatis",
+                    "status": "Gagal",
+                    "response": "Timeout — router Medan Kota tidak merespons",
+                    "note": "Percobaan isolir otomatis gagal, dijadwalkan ulang."
+                }
+            ],
+            "tickets": [
+                {
+                    "no": "TKT-202611-021",
+                    "issue": "Tagihan dobel pada periode November",
+                    "status": "In Progress",
+                    "created_at": "2026-11-09",
+                    "closed_at": null
+                },
+                {
+                    "no": "TKT-202608-006",
+                    "issue": "Sinyal drop saat hujan",
+                    "status": "Resolved",
+                    "created_at": "2026-08-17",
+                    "closed_at": "2026-08-19"
+                }
+            ]
+        },
+        {
+            "id": "CST-202611-003",
+            "nama": "Budi Santoso",
+            "no_hp": "081234567803",
+            "email": "budi.santoso@example.test",
+            "alamat": "Jl. Soekarno-Hatta No. 88, Kel. Kebun Lada, Kec. Binjai Utara",
+            "wilayah": "POP Binjai",
+            "cluster": "Cluster Binjai Kota",
+            "odp": "ODP-BJ-01",
+            "latitude": 3.6001,
+            "longitude": 98.485,
+            "catatan": "Pelanggan menunggak 2 periode. Sudah dihubungi via telepon dan WhatsApp.",
+            "status": "Isolir",
+            "status_since": "2026-10-25",
+            "pppoe_username": "budi.santoso",
+            "pppoe_password": "Knt#Budi2026",
+            "paket": "KiNet Home 10",
+            "bandwidth": "10 Mbps / 3 Mbps",
+            "profile": "home-10m",
+            "router": "Router Binjai",
+            "router_ip": "10.10.10.1",
+            "rate_limit": "10M/3M",
+            "queue": "queue-budi-santoso",
+            "tanggal_aktivasi": "2025-11-20",
+            "jatuh_tempo": "2026-10-20",
+            "mitra": "Mitra Binjai",
+            "status_logs": [
+                {
+                    "at": "2026-10-30 10:12",
+                    "from": "Isolir",
+                    "to": "Isolir",
+                    "by": "Admin KiNet",
+                    "note": "Percobaan pemulihan manual gagal, gateway tidak merespons."
+                },
+                {
+                    "at": "2026-10-25 02:00",
+                    "from": "Aktif",
+                    "to": "Isolir",
+                    "by": "Sistem Isolasi",
+                    "note": "Penunggakan 5 hari, isolir otomatis dijalankan."
+                },
+                {
+                    "at": "2025-11-20 09:30",
+                    "from": "Pending",
+                    "to": "Aktif",
+                    "by": "Teknisi Binjai",
+                    "note": "Instalasi selesai."
+                }
+            ],
+            "invoices": [
+                {
+                    "no": "INV-202610-003",
+                    "periode": "Okt 2026",
+                    "nominal": 125000,
+                    "status": "Menunggak",
+                    "jatuh_tempo": "2026-10-20"
+                },
+                {
+                    "no": "INV-202609-003",
+                    "periode": "Sep 2026",
+                    "nominal": 125000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-09-20"
+                },
+                {
+                    "no": "INV-202608-003",
+                    "periode": "Agt 2026",
+                    "nominal": 125000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-08-20"
+                }
+            ],
+            "payments": [
+                {
+                    "tanggal": "2026-09-12 10:11",
+                    "metode": "QRIS",
+                    "referensi": "TRX-QRIS-60211",
+                    "nominal": 125000
+                },
+                {
+                    "tanggal": "2026-08-10 16:30",
+                    "metode": "Manual",
+                    "referensi": "TRX-MAN-60114",
+                    "nominal": 125000
+                }
+            ],
+            "package_changes": [],
+            "isolation_logs": [
+                {
+                    "at": "2026-10-30 10:12",
+                    "type": "Manual",
+                    "status": "Gagal dipulihkan",
+                    "response": "Timeout — gateway 10.10.10.1 tidak merespons",
+                    "note": "Pemulihan manual setelah konfirmasi pembayaran lisan."
+                },
+                {
+                    "at": "2026-10-25 02:00",
+                    "type": "Otomatis",
+                    "status": "Diisolasi",
+                    "response": "200 OK — PPP secret disabled, profile isolir-1m",
+                    "note": "Invoice Okt 2026 melewati jatuh tempo."
+                }
+            ],
+            "tickets": [
+                {
+                    "no": "TKT-202610-031",
+                    "issue": "Tidak bisa akses internet sejak pagi",
+                    "status": "Open",
+                    "created_at": "2026-10-26",
+                    "closed_at": null
+                }
+            ]
+        },
+        {
+            "id": "CST-202611-004",
+            "nama": "Nur Aisyah",
+            "no_hp": "081234567804",
+            "email": "nur.aisyah@example.test",
+            "alamat": "Jl. Bandar Baru No. 7, Kel. Petapahan, Kec. Lubuk Pakam",
+            "wilayah": "POP Deli Serdang",
+            "cluster": "Cluster Lubuk Pakam",
+            "odp": "ODP-DS-01",
+            "latitude": 3.559,
+            "longitude": 98.878,
+            "catatan": "Instalasi dijadwalkan 14 November 2026, koordinasi dengan tim lapangan Deli Serdang.",
+            "status": "Pending",
+            "status_since": "2026-11-09",
+            "pppoe_username": "nur.aisyah",
+            "pppoe_password": "Knt#Nur2026",
+            "paket": "KiNet Home 20",
+            "bandwidth": "20 Mbps / 5 Mbps",
+            "profile": "home-20m",
+            "router": "Router Deli Serdang",
+            "router_ip": "10.10.20.1",
+            "rate_limit": "20M/5M",
+            "queue": "queue-nur-aisyah",
+            "tanggal_aktivasi": null,
+            "jatuh_tempo": "2026-12-01",
+            "mitra": "Mitra Deli Serdang",
+            "status_logs": [
+                {
+                    "at": "2026-11-09 15:42",
+                    "from": "Baru",
+                    "to": "Pending",
+                    "by": "Admin KiNet",
+                    "note": "Registrasi dari kanal WhatsApp, menunggu jadwal instalasi."
+                }
+            ],
+            "invoices": [],
+            "payments": [],
+            "package_changes": [],
+            "isolation_logs": [],
+            "tickets": [
+                {
+                    "no": "TKT-202611-040",
+                    "issue": "Konfirmasi jadwal instalasi",
+                    "status": "Open",
+                    "created_at": "2026-11-09",
+                    "closed_at": null
+                }
+            ]
+        },
+        {
+            "id": "CST-202611-005",
+            "nama": "Rizky Pratama",
+            "no_hp": "081234567805",
+            "email": "rizky.pratama@example.test",
+            "alamat": "Jl. Sutomo No. 21, Kel. Tebing Tinggi Kota, Kec. Tebing Tinggi",
+            "wilayah": "POP Tebing Tinggi",
+            "cluster": "Cluster Tebing Kota",
+            "odp": "ODP-TT-01",
+            "latitude": 3.3285,
+            "longitude": 99.1625,
+            "catatan": "Akun bisnis. Penanggung jawab operasional: Rina (0812-0000-1122).",
+            "status": "Suspend",
+            "status_since": "2026-11-05",
+            "pppoe_username": "rizky.pratama",
+            "pppoe_password": "Knt#Rizky2026",
+            "paket": "KiNet Bisnis 50",
+            "bandwidth": "50 Mbps / 25 Mbps",
+            "profile": "biz-50m",
+            "router": "Router Tebing Tinggi",
+            "router_ip": "10.10.30.1",
+            "rate_limit": "50M/25M",
+            "queue": "queue-rizky-pratama",
+            "tanggal_aktivasi": "2026-01-15",
+            "jatuh_tempo": "2026-11-15",
+            "mitra": "Mitra Tebing Tinggi",
+            "status_logs": [
+                {
+                    "at": "2026-11-05 16:40",
+                    "from": "Aktif",
+                    "to": "Suspend",
+                    "by": "Admin KiNet",
+                    "note": "Permintaan pelanggan, relokasi kantor sementara."
+                },
+                {
+                    "at": "2026-01-15 11:05",
+                    "from": "Pending",
+                    "to": "Aktif",
+                    "by": "Teknisi Tebing Tinggi",
+                    "note": "Aktivasi layanan bisnis selesai."
+                }
+            ],
+            "invoices": [
+                {
+                    "no": "INV-202611-005",
+                    "periode": "Nov 2026",
+                    "nominal": 450000,
+                    "status": "Terbit",
+                    "jatuh_tempo": "2026-11-15"
+                },
+                {
+                    "no": "INV-202610-005",
+                    "periode": "Okt 2026",
+                    "nominal": 450000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-10-15"
+                },
+                {
+                    "no": "INV-202609-005",
+                    "periode": "Sep 2026",
+                    "nominal": 450000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-09-15"
+                }
+            ],
+            "payments": [
+                {
+                    "tanggal": "2026-10-10 09:02",
+                    "metode": "Midtrans",
+                    "referensi": "TRX-MDR-99120",
+                    "nominal": 450000
+                },
+                {
+                    "tanggal": "2026-09-11 13:48",
+                    "metode": "Midtrans",
+                    "referensi": "TRX-MDR-98441",
+                    "nominal": 450000
+                }
+            ],
+            "package_changes": [
+                {
+                    "tanggal": "2026-05-20",
+                    "from": "KiNet Bisnis 30",
+                    "to": "KiNet Bisnis 50",
+                    "by": "Admin KiNet",
+                    "note": "Penambahan kapasitas untuk tim operasional."
+                }
+            ],
+            "isolation_logs": [
+                {
+                    "at": "2026-11-05 16:41",
+                    "type": "Manual",
+                    "status": "Ditangguhkan",
+                    "response": "200 OK — PPP secret disabled atas permintaan pelanggan",
+                    "note": "Suspend sementara, bukan karena tunggakan."
+                }
+            ],
+            "tickets": [
+                {
+                    "no": "TKT-202611-036",
+                    "issue": "Permintaan aktif kembali setelah relokasi",
+                    "status": "In Progress",
+                    "created_at": "2026-11-05",
+                    "closed_at": null
+                }
+            ]
+        },
+        {
+            "id": "CST-202611-006",
+            "nama": "Maya Lestari",
+            "no_hp": "081234567806",
+            "email": "maya.lestari@example.test",
+            "alamat": "Jl. Helvetia Raya No. 3, Kel. Helvetia, Kec. Medan Sunggal",
+            "wilayah": "POP Medan Kota",
+            "cluster": "Cluster Helvetia",
+            "odp": "ODP-MK-04",
+            "latitude": 3.613,
+            "longitude": 98.642,
+            "catatan": "Berhenti sejak September 2026 karena pindah domisili. Perangkat sudah ditarik.",
+            "status": "Berhenti",
+            "status_since": "2026-09-01",
+            "pppoe_username": "maya.lestari",
+            "pppoe_password": "Knt#Maya2025",
+            "paket": "KiNet Home 10",
+            "bandwidth": "10 Mbps / 3 Mbps",
+            "profile": "home-10m",
+            "router": "Router Medan Kota",
+            "router_ip": "10.10.0.1",
+            "rate_limit": "10M/3M",
+            "queue": "queue-maya-lestari",
+            "tanggal_aktivasi": "2025-02-11",
+            "jatuh_tempo": "2026-09-11",
+            "mitra": "Mitra Medan Kota",
+            "status_logs": [
+                {
+                    "at": "2026-09-01 11:00",
+                    "from": "Aktif",
+                    "to": "Berhenti",
+                    "by": "Admin KiNet",
+                    "note": "Pelanggan pindah domisili, perangkat ditarik."
+                },
+                {
+                    "at": "2025-02-11 08:45",
+                    "from": "Pending",
+                    "to": "Aktif",
+                    "by": "Teknisi Medan",
+                    "note": "Aktivasi awal."
+                }
+            ],
+            "invoices": [
+                {
+                    "no": "INV-202608-006",
+                    "periode": "Agt 2026",
+                    "nominal": 125000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-08-11"
+                },
+                {
+                    "no": "INV-202607-006",
+                    "periode": "Jul 2026",
+                    "nominal": 125000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-07-11"
+                }
+            ],
+            "payments": [
+                {
+                    "tanggal": "2026-08-09 10:25",
+                    "metode": "QRIS",
+                    "referensi": "TRX-QRIS-10233",
+                    "nominal": 125000
+                },
+                {
+                    "tanggal": "2026-07-10 09:15",
+                    "metode": "QRIS",
+                    "referensi": "TRX-QRIS-09981",
+                    "nominal": 125000
+                }
+            ],
+            "package_changes": [],
+            "isolation_logs": [
+                {
+                    "at": "2026-09-01 11:05",
+                    "type": "Manual",
+                    "status": "Perangkat ditarik",
+                    "response": "200 OK — PPP secret dihapus, ONT dikembalikan",
+                    "note": "Penutupan layanan atas permintaan pelanggan."
+                }
+            ],
+            "tickets": []
+        },
+        {
+            "id": "CST-202611-007",
+            "nama": "Fajar Nugroho",
+            "no_hp": "081234567807",
+            "email": "fajar.nugroho@example.test",
+            "alamat": "Jl. Veteran No. 56, Kel. Stabat Baru, Kec. Stabat",
+            "wilayah": "POP Binjai",
+            "cluster": "Cluster Stabat",
+            "odp": "ODP-BJ-03",
+            "latitude": 3.733,
+            "longitude": 98.451,
+            "catatan": "Pelanggan bisnis dengan SLA 99%. Prioritas penanganan tiket.",
+            "status": "Aktif",
+            "status_since": "2026-08-02",
+            "pppoe_username": "fajar.nugroho",
+            "pppoe_password": "Knt#Fajar2026",
+            "paket": "KiNet Bisnis 100",
+            "bandwidth": "100 Mbps / 50 Mbps",
+            "profile": "biz-100m",
+            "router": "Router Binjai",
+            "router_ip": "10.10.10.1",
+            "rate_limit": "100M/50M",
+            "queue": "queue-fajar-nugroho",
+            "tanggal_aktivasi": "2026-08-02",
+            "jatuh_tempo": "2026-11-02",
+            "mitra": "Mitra Binjai",
+            "status_logs": [
+                {
+                    "at": "2026-08-02 14:10",
+                    "from": "Pending",
+                    "to": "Aktif",
+                    "by": "Teknisi Binjai",
+                    "note": "Instalasi dedicated selesai."
+                }
+            ],
+            "invoices": [
+                {
+                    "no": "INV-202611-007",
+                    "periode": "Nov 2026",
+                    "nominal": 750000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-11-02"
+                },
+                {
+                    "no": "INV-202610-007",
+                    "periode": "Okt 2026",
+                    "nominal": 750000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-10-02"
+                }
+            ],
+            "payments": [
+                {
+                    "tanggal": "2026-11-01 08:30",
+                    "metode": "Midtrans",
+                    "referensi": "TRX-MDR-88302",
+                    "nominal": 750000
+                },
+                {
+                    "tanggal": "2026-10-02 07:55",
+                    "metode": "Midtrans",
+                    "referensi": "TRX-MDR-87110",
+                    "nominal": 750000
+                }
+            ],
+            "package_changes": [
+                {
+                    "tanggal": "2026-09-15",
+                    "from": "KiNet Bisnis 50",
+                    "to": "KiNet Bisnis 100",
+                    "by": "Admin KiNet",
+                    "note": "Permintaan upgrade bandwidth untuk kantor cabang."
+                }
+            ],
+            "isolation_logs": [],
+            "tickets": [
+                {
+                    "no": "TKT-202609-018",
+                    "issue": "Permintaan public IP statis",
+                    "status": "Resolved",
+                    "created_at": "2026-09-03",
+                    "closed_at": "2026-09-04"
+                },
+                {
+                    "no": "TKT-202611-044",
+                    "issue": "Monitoring bandwidth bulanan",
+                    "status": "In Progress",
+                    "created_at": "2026-11-08",
+                    "closed_at": null
+                }
+            ]
+        },
+        {
+            "id": "CST-202611-008",
+            "nama": "Dewi Anggraini",
+            "no_hp": "081234567808",
+            "email": "dewi.anggraini@example.test",
+            "alamat": "Jl. Pantai Cermin No. 19, Kel. Percut, Kec. Percut Sei Tuan",
+            "wilayah": "POP Deli Serdang",
+            "cluster": "Cluster Percut",
+            "odp": "ODP-DS-02",
+            "latitude": 3.642,
+            "longitude": 98.762,
+            "catatan": "Menunggu konfirmasi transfer bank untuk dua invoice terakhir.",
+            "status": "Menunggak",
+            "status_since": "2026-10-08",
+            "pppoe_username": "dewi.anggraini",
+            "pppoe_password": "Knt#Dewi2026",
+            "paket": "KiNet Home 30",
+            "bandwidth": "30 Mbps / 10 Mbps",
+            "profile": "home-30m",
+            "router": "Router Deli Serdang",
+            "router_ip": "10.10.20.1",
+            "rate_limit": "30M/10M",
+            "queue": "queue-dewi-anggraini",
+            "tanggal_aktivasi": "2026-02-18",
+            "jatuh_tempo": "2026-11-05",
+            "mitra": "Mitra Deli Serdang",
+            "status_logs": [
+                {
+                    "at": "2026-10-08 00:10",
+                    "from": "Aktif",
+                    "to": "Menunggak",
+                    "by": "Sistem Penagihan",
+                    "note": "Invoice Okt 2026 belum dibayar."
+                },
+                {
+                    "at": "2026-02-18 10:35",
+                    "from": "Pending",
+                    "to": "Aktif",
+                    "by": "Teknisi Deli Serdang",
+                    "note": "Aktivasi selesai."
+                }
+            ],
+            "invoices": [
+                {
+                    "no": "INV-202611-008",
+                    "periode": "Nov 2026",
+                    "nominal": 200000,
+                    "status": "Menunggak",
+                    "jatuh_tempo": "2026-11-05"
+                },
+                {
+                    "no": "INV-202610-008",
+                    "periode": "Okt 2026",
+                    "nominal": 200000,
+                    "status": "Menunggak",
+                    "jatuh_tempo": "2026-10-05"
+                },
+                {
+                    "no": "INV-202609-008",
+                    "periode": "Sep 2026",
+                    "nominal": 200000,
+                    "status": "Lunas",
+                    "jatuh_tempo": "2026-09-05"
+                }
+            ],
+            "payments": [
+                {
+                    "tanggal": "2026-09-04 11:20",
+                    "metode": "Manual",
+                    "referensi": "TRX-MAN-66120",
+                    "nominal": 200000
+                }
+            ],
+            "package_changes": [],
+            "isolation_logs": [
+                {
+                    "at": "2026-11-06 00:05",
+                    "type": "Otomatis",
+                    "status": "Ditunda",
+                    "response": "Timeout — gateway Deli Serdang tidak merespons",
+                    "note": "Isolir otomatis akan diulang pada siklus berikutnya."
+                }
+            ],
+            "tickets": [
+                {
+                    "no": "TKT-202611-047",
+                    "issue": "Konfirmasi pembayaran via transfer bank",
+                    "status": "In Progress",
+                    "created_at": "2026-11-07",
+                    "closed_at": null
+                }
+            ]
+        }
+    ]
+}

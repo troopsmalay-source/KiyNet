@@ -1,0 +1,29 @@
+.pengingat-module { --pengingat-blue: #1677e8; --pengingat-line: #e5eaf1; }
+.pengingat-breadcrumb { min-height: 24px; margin-bottom: 8px; }
+.pengingat-breadcrumb a { color: inherit; text-decoration: none; }
+.pengingat-page-card { padding: 18px; border: 1px solid var(--pengingat-line); border-radius: 12px; background: #fff; }
+.pengingat-page-card > .page-heading { margin-bottom: 16px; }
+.pengingat-today { display: inline-flex; align-items: center; gap: 7px; color: #64748b; font-size: 11px; }
+.pengingat-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 15px; }
+.pengingat-tab { display: flex; min-height: 58px; align-items: center; justify-content: space-between; gap: 9px; padding: 11px 13px; border: 1px solid var(--pengingat-line); border-radius: 10px; color: #64748b; background: #fff; text-align: left; transition: border-color .15s ease, box-shadow .15s ease, color .15s ease; }
+.pengingat-tab:hover, .pengingat-tab.is-selected { border-color: #9dc8fb; color: #145db5; box-shadow: 0 4px 14px rgb(22 119 232 / 8%); }
+.pengingat-tab.is-selected { background: #f1f7ff; }
+.pengingat-tab span { font-size: 11px; font-weight: 600; }
+.pengingat-tab strong { display: grid; min-width: 27px; height: 27px; place-items: center; padding: 0 6px; border-radius: 8px; color: #334155; background: #f1f5f9; font-size: 11px; }
+.pengingat-tab.is-selected strong { color: #fff; background: var(--pengingat-blue); }
+.pengingat-table-panel { overflow: hidden; border: 1px solid var(--pengingat-line); border-radius: 11px; background: #fff; }
+.pengingat-table-heading { padding: 17px 18px 13px; }
+.pengingat-table-heading h3 { margin: 0; color: #172033; font-size: 15px; font-weight: 700; }
+.pengingat-table-heading p { margin: 5px 0 0; color: #8290a3; font-size: 11px; }
+.pengingat-table { margin-bottom: 0; font-size: 11px; }
+.pengingat-table thead th { white-space: nowrap; color: #64748b; font-size: 10px; font-weight: 700; }
+@media (max-width: 900px) {
+    .pengingat-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 575px) {
+    .pengingat-page-card { padding: 12px; }
+    .pengingat-tabs { gap: 7px; }
+    .pengingat-tab { min-height: 64px; align-items: flex-start; padding: 9px; }
+    .pengingat-tab span { max-width: 130px; font-size: 10px; }
+    .pengingat-table-heading { padding: 14px 12px 10px; }
+}

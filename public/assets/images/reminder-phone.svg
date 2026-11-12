@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="190" height="300" viewBox="0 0 190 300" fill="none">
+  <defs>
+    <linearGradient id="case" x1="17" y1="12" x2="176" y2="293" gradientUnits="userSpaceOnUse"><stop stop-color="#101A2D"/><stop offset="1" stop-color="#030914"/></linearGradient>
+    <linearGradient id="screen" x1="31" y1="40" x2="161" y2="270" gradientUnits="userSpaceOnUse"><stop stop-color="#E9E6D8"/><stop offset="1" stop-color="#FFF8E9"/></linearGradient>
+  </defs>
+  <rect x="12" y="6" width="166" height="288" rx="25" fill="url(#case)" stroke="#38465B" stroke-width="4"/>
+  <rect x="21" y="21" width="148" height="255" rx="18" fill="url(#screen)"/>
+  <path d="M68 14h54c-2 11-8 15-17 15H84c-9 0-14-4-16-15z" fill="#030914"/>
+  <path d="M21 45h148" stroke="#D3CFBF"/>
+  <circle cx="42" cy="64" r="13" fill="#16B866"/>
+  <path d="M36 58c3-4 10-4 13 1 4 6 0 13-6 14l-7 2 2-6c-4-4-5-7-2-11z" fill="#fff"/>
+  <text x="61" y="61" fill="#133B2C" font-family="Arial,sans-serif" font-size="10" font-weight="700">KiNet</text>
+  <circle cx="94" cy="58" r="3" fill="#17B667"/>
+  <text x="32" y="94" fill="#263449" font-family="Arial,sans-serif" font-size="9">Yth. Pelanggan KiNet,</text>
+  <text x="32" y="111" fill="#263449" font-family="Arial,sans-serif" font-size="8.5">Pengingat tagihan internet</text>
+  <text x="32" y="125" fill="#263449" font-family="Arial,sans-serif" font-size="8.5">Anda sudah tersedia.</text>
+  <text x="32" y="147" fill="#263449" font-family="Arial,sans-serif" font-size="8.5">Silakan buka aplikasi KiNet</text>
+  <text x="32" y="161" fill="#263449" font-family="Arial,sans-serif" font-size="8.5">untuk melihat informasi</text>
+  <text x="32" y="175" fill="#263449" font-family="Arial,sans-serif" font-size="8.5">tagihan dan pembayaran.</text>
+  <text x="32" y="197" fill="#263449" font-family="Arial,sans-serif" font-size="8.5">Terima kasih.</text>
+  <path d="M34 224h94" stroke="#E3DCC9" stroke-linecap="round"/>
+  <circle cx="145" cy="246" r="8" fill="#D6CEBA"/>
+  <path d="M142 246h6" stroke="#9D9788" stroke-linecap="round" stroke-width="2"/>
+  <path d="M83 285h28" stroke="#596579" stroke-linecap="round" stroke-width="3"/>
+</svg>

@@ -1,0 +1,30 @@
+.dataTables_wrapper { color: #64748b; font: 11px Inter, Arial, sans-serif; }
+.dataTables_wrapper .dt-layout-row { align-items: center; gap: 12px; margin: 0; padding: 14px 16px; }
+.dataTables_wrapper .dt-layout-row:first-child { border-bottom: 1px solid #f1f5f9; }
+.dataTables_wrapper .dt-layout-row:last-child { border-top: 1px solid #f1f5f9; }
+.dataTables_wrapper .dt-length,
+.dataTables_wrapper .dt-search,
+.dataTables_wrapper .dt-info { color: #64748b; font-size: 10px; }
+.dataTables_wrapper .dt-length select,
+.dataTables_wrapper .dt-search input { min-height: 34px; margin: 0 4px; padding: 5px 9px; border: 1px solid #dbe2ea; border-radius: 7px; color: #334155; background: #fff; font: 11px Inter, Arial, sans-serif; }
+.dataTables_wrapper .dt-length select,
+.dt-container .dt-length select,
+.page-content .dt-container .dt-length select { min-height: 30px; padding: 3px 22px 3px 7px; font-size: 10px; }
+.dataTables_wrapper .dt-search input { width: min(230px, 42vw); }
+.dataTables_wrapper .dt-length select:focus,
+.dataTables_wrapper .dt-search input:focus { border-color: #93b4fb; outline: 0; box-shadow: 0 0 0 3px rgb(37 99 235 / 10%); }
+.dataTables_wrapper .pagination { gap: 4px; margin: 0; }
+.dataTables_wrapper .page-link { min-width: 30px; border-color: #e5e7eb; border-radius: 7px !important; color: #475569; font-size: 10px; text-align: center; }
+.dataTables_wrapper .page-item.active .page-link { border-color: #2563eb; color: #fff; background: #2563eb; }
+.dataTables_wrapper .page-item.disabled .page-link { color: #cbd5e1; }
+.dataTables_wrapper .dt-processing { border: 1px solid #dbeafe; border-radius: 8px; color: #1d4ed8; background: #eff6ff; box-shadow: 0 4px 12px rgb(15 23 42 / 8%); }
+.dataTables_wrapper .table { margin-bottom: 0 !important; }
+.dashboard-tables .dataTables_wrapper .dt-layout-row { padding-right: 12px; padding-left: 12px; }
+.dashboard-tables .dataTables_wrapper .dt-length { display: none; }
+
+@media (max-width: 700px) {
+    .dataTables_wrapper .dt-layout-row { align-items: flex-start; flex-direction: column; padding: 12px; }
+    .dataTables_wrapper .dt-search { width: 100%; }
+    .dataTables_wrapper .dt-search input { width: min(260px, 65vw); }
+    .dataTables_wrapper .pagination { flex-wrap: wrap; }
+}

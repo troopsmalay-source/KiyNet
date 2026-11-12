@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="290" viewBox="0 0 300 290" fill="none">
+  <defs>
+    <linearGradient id="shirt" x1="79" y1="175" x2="181" y2="281" gradientUnits="userSpaceOnUse"><stop stop-color="#218CF5"/><stop offset="1" stop-color="#0755B8"/></linearGradient>
+    <linearGradient id="laptop" x1="103" y1="215" x2="245" y2="269" gradientUnits="userSpaceOnUse"><stop stop-color="#A9C6E8"/><stop offset="1" stop-color="#54749A"/></linearGradient>
+  </defs>
+  <circle cx="142" cy="137" r="118" fill="#E8F3FF"/>
+  <circle cx="48" cy="81" r="18" fill="#D0E7FF"/><circle cx="254" cy="118" r="25" fill="#D4E9FF"/>
+  <path d="M31 144h46M41 157h35M32 170h30" stroke="#9BC8FF" stroke-linecap="round" stroke-width="7"/>
+  <circle cx="231" cy="62" r="28" fill="#167AF0"/>
+  <path d="M222 63h18m-15-6h12m-12 12h8" stroke="#fff" stroke-linecap="round" stroke-width="3"/>
+  <path d="M90 251c5-43 19-67 50-70 34-3 53 24 61 70v22H88z" fill="url(#shirt)"/>
+  <path d="M115 171c-2-29 12-51 38-52 27-1 42 21 38 51l-7 31c-5 20-20 33-37 33s-34-15-37-35z" fill="#F2B590"/>
+  <path d="M111 161c-3-33 10-56 39-58 24-2 42 13 44 43l-8-4-10-25c-13 19-32 26-61 25l-4 19z" fill="#172D4D"/>
+  <path d="M133 174h8m20 0h8" stroke="#3B3140" stroke-linecap="round" stroke-width="3"/>
+  <path d="M144 191c6 5 12 5 18 0" stroke="#B86763" stroke-linecap="round" stroke-width="3"/>
+  <path d="M117 210l25 21 24-22" fill="#fff"/>
+  <path d="m90 252 60 17 58-19 43 23H63z" fill="#164D92"/>
+  <path d="m104 228 49-13 101 26-51 18z" fill="url(#laptop)"/>
+  <path d="m203 259 51-18v25l-52 15z" fill="#385A7F"/>
+  <path d="m104 228 49-13v26l-49 14z" fill="#D8E9FC"/>
+  <path d="M133 235h44m-36 7h43" stroke="#88A6C9" stroke-linecap="round" stroke-width="3"/>
+  <path d="M64 277h211" stroke="#93B7E2" stroke-linecap="round" stroke-width="5"/>
+</svg>
