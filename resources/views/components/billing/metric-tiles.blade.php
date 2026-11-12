@@ -1,5 +1,6 @@
-<div class="bill-metrics">
-    <div class="bill-metric">
+<section class="cst-card bill-metrics-card">
+    <div class="bill-metrics">
+    <div class="bill-metric bill-metric--default">
         <div class="bill-metric-label"><i class="bi bi-cash-stack me-1"></i>Piutang Aktif</div>
         <div class="bill-metric-value">Rp {{ number_format($stats['piutang_total'], 0, ',', '.') }}</div>
         <div class="bill-metric-sub">{{ $stats['piutang_count'] }} invoice belum lunas</div>
@@ -24,4 +25,5 @@
         <div class="bill-metric-value bill-metric-value--warn">{{ $stats['pending_count'] }}</div>
         <div class="bill-metric-sub">Rp {{ number_format($stats['pending_total'], 0, ',', '.') }}</div>
     </div>
-</div>
+    </div>
+</section>

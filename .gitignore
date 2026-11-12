@@ -22,3 +22,8 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Screenshot dev (screenshot & preview capture)
+screenshot-*.png
+billing-*.png
+cst-*.png
