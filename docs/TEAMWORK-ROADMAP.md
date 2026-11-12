@@ -1,6 +1,6 @@
 # Roadmap Kolaborasi — KiNet eBilling
 
-Panduan kerja tim untuk repo `troopsmalay-source/KiyNet`. Disesuaikan untuk tim kecil (owner + 1–3 pengembang).
+Panduan kerja tim untuk repo `troopsmalay-source/KiyNet`. Tim 2 orang: 1 owner + 1 developer.
 
 ## 1. Struktur Tim & Akses
 
@@ -14,7 +14,55 @@ Panduan kerja tim untuk repo `troopsmalay-source/KiyNet`. Disesuaikan untuk tim 
 - Siapa pun (termasuk owner) wajib membuat Pull Request untuk perubahan kode.
 - Jangan ubah `Settings → Collaborators` tanpa koordinasi di Issue.
 
-## 2. Workflow Git
+## 2. Pembagian Tugas Harian
+
+Tim hanya 2 orang, jadi pembagiannya tegas: owner pegang keputusan dan rilis, developer pegang eksekusi kode. Respon ideal tiap orang maksimal 1 hari kerja.
+
+### Owner — `troopsmalay-source`
+
+| Waktu | Tugas | Output |
+|---|---|---|
+| Pagi | Cek Issue & PR masuk, tentukan prioritas hari ini | 1–3 Issue berlabel `wip` |
+| Siang | Review PR (logic, test, style, keamanan) | Approve / request changes |
+| Sore | Merge PR yang lulus review + CI | `main` ter-update |
+| Kapan saja | Eskalasi blocker, jawab pertanyaan developer | Issue `blocker` tertutup |
+| Mingguan | Deploy ke production, cek log & error | Rilis + laporan singkat |
+| Bulanan | Audit secrets, akses collaborator, dependency | Catatan audit |
+
+**Owner tidak menulis kode fitur** kecuali mendesak. Fokus: unblock, review, rilis.
+
+### Developer — `metamarkid-crypto`
+
+| Waktu | Tugas | Output |
+|---|---|---|
+| Pagi | Ambil Issue `wip`, buat branch `feature/*` / `bugfix/*` | Branch aktif |
+| Siang | Implementasi + test lokal (`php artisan test`) | Commit ter-push |
+| Sore | Buka PR, isi deskripsi + `Closes #N`, tunggu review | PR siap review |
+| Kapan saja | Perbaiki hasil review dalam 1 hari kerja | PR revisi |
+| Harian | Cek CI hijau sebelum minta review | CI green |
+
+**Developer tidak merge sendiri**, termasuk PR miliknya. Merge selalu lewat owner.
+
+### Ritme Komunikasi
+
+- **Harian:** update singkat di Issue (apa yang selesai, apa blokirnya). Tidak perlu meeting.
+- **Mingguan:** 15 menit sinkron, tentukan target minggu depan.
+- **Blocker > 1 hari:** eskalasi ke owner dengan label `blocker`, jangan diam.
+
+### Batas Wewenang
+
+| Aktivitas | Owner | Developer |
+|---|---|---|
+| Merge PR | ya | tidak |
+| Force push `main` | ya (darurat) | tidak |
+| Deploy production | ya | tidak |
+| Ubah secrets | ya | tidak |
+| Ubah Collaborators | ya | tidak |
+| Buat branch & PR | ya | ya |
+| Tulis kode & test | ya | ya |
+| Ubah label Issue | ya | ya |
+
+## 3. Workflow Git
 
 ```
 main  (deploy, selalu stabil)
@@ -43,7 +91,7 @@ main  (deploy, selalu stabil)
 
 Contoh: `feat: add invoice pagination di /admin/billing`
 
-## 3. Roadmap Tahapan
+## 4. Roadmap Tahapan
 
 ### Phase 1 — Build (minggu ini)
 - Setup: `.env`, `composer install`, `npm install`, `php artisan serve --host=127.0.0.1 --port=8080`
@@ -71,21 +119,21 @@ Contoh: `feat: add invoice pagination di /admin/billing`
 - Monitoring: health checks, log
 - Rilis fitur minor (UI mobile, dashboard tambahan)
 
-## 4. Standar Issue & Tracking
+## 5. Standar Issue & Tracking
 
 - Setiap bug/fitur = 1 Issue di `https://github.com/troopsmalay-source/KiyNet/issues`
 - Label: `bug`, `enhancement`, `priority:high`, `wip`, `review`
 - Assign owner & developer di Issue
 - Link PR ke Issue: tulis `Closes #12` di deskripsi PR
 
-## 5. Secrets & Key Management
+## 6. Secrets & Key Management
 
 - `.env` **tidak pernah** masuk git (sudah di `.gitignore`, tetap dicek sebelum push)
 - `.env.example` adalah template kosong yang boleh di-push
 - API key di CI: `Settings → Secrets and variables → Actions`
 - Jangan pernah memindahkan `.env` antar machine lewat chat/email
 
-## 6. Perintah Lokal
+## 7. Perintah Lokal
 
 ```bash
 # Setup pertama kali
@@ -105,7 +153,7 @@ npm run dev                                        # asset
 php artisan test
 ```
 
-## 7. Checklist Code Review (setiap PR)
+## 8. Checklist Code Review (setiap PR)
 
 - [ ] `php artisan test` lulus
 - [ ] Tidak ada `var_dump`, `dd()`, `console.log`, `print_r` tersisa
@@ -115,7 +163,7 @@ php artisan test
 - [ ] Dokumentasi/comments diperbarui bila ada perubahan perilaku
 - [ ] CI GitHub Actions hijau sebelum merge
 
-## 8. Manajemen Risiko
+## 9. Manajemen Risiko
 
 | Risiko | Mitigasi |
 |---|---|
@@ -126,14 +174,14 @@ php artisan test
 | Test regresi | Jalankan test lokal sebelum push |
 | Blokir deploy | Owner jaga akses deploy; document runbook |
 
-## 9. Kontak & Eskalasi
+## 10. Kontak & Eskalasi
 
 - Pertanyaan teknis → buat Issue / tag di PR
 - Blok progress > 1 hari → eskalasi ke owner via Issue dengan label `blocker`
 - Owner: `troopsmalay-source`
 - Developer: `metamarkid-crypto`
 
-## 10. Jadwal Rutin
+## 11. Jadwal Rutin
 
 | Aktivitas | Frekuensi |
 |---|---|
