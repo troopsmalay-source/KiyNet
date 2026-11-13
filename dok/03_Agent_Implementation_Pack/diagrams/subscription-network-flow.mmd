@@ -1,0 +1,19 @@
+sequenceDiagram
+  participant Pay as Payment Provider
+  participant App as Laravel Billing
+  participant DB as Business PostgreSQL
+  participant Q as Outbox / Queue
+  participant Net as Network Adapter
+  participant Rad as FreeRADIUS SQL
+  participant MT as MikroTik NAS
+  Pay->>App: Signed payment webhook
+  App->>App: Verify signature + event uniqueness
+  App->>DB: Mark payment verified + invoice paid
+  App->>DB: Insert network restore outbox (same transaction)
+  App-->>Pay: Acknowledge accepted
+  Q->>Net: Process idempotent policy command
+  Net->>Rad: Update desired RADIUS policy version
+  Net->>MT: Disconnect / CoA if required (lab verified)
+  Net->>DB: Record success / failure
+  MT->>Rad: New PPPoE Access-Request
+  Rad-->>MT: Access-Accept + package policy

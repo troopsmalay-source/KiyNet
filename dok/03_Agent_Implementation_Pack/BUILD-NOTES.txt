@@ -1,0 +1,3 @@
+Generated 13 November 2026.
+The technical DOCX is a formatted master overview of docs 01-08. The ZIP contains the source Markdown, machine-readable OpenAPI 3.1 YAML, two individual copy-paste agent prompts, an orchestrator prompt, coordination template, Mermaid diagrams and RADIUS/MikroTik infrastructure notes.
+The repository audit is partial and based on publicly inspectable files. Execute Phase 0 using a local clone of the exact target branch before changing migrations or enabling production network operations.

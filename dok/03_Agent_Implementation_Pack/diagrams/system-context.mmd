@@ -1,0 +1,16 @@
+flowchart TB
+  ISP[Central ISP Staff] --> WEB[KikiNet Web App]
+  PARTNER[Partner Staff] --> WEB
+  CUSTOMER[Customer / Public Viewer] --> PUBLIC[Public Invoice Page]
+  WEB --> APP[Laravel Modular Monolith]
+  PUBLIC --> APP
+  APP --> BIZ[(PostgreSQL Business DB)]
+  APP --> REDIS[(Redis Queue / Cache)]
+  REDIS --> WORKER[Laravel Workers]
+  WORKER --> RADIUSDB[(PostgreSQL RADIUS DB)]
+  NAS[MikroTik PPPoE NAS Fleet] <--> FR[FreeRADIUS Primary / Secondary]
+  FR <--> RADIUSDB
+  WORKER <--> NAS
+  APP <--> PAYMENT[Payment Provider]
+  APP <--> WA[WhatsApp Provider]
+  APP --> AI[Read-only AI Provider]
