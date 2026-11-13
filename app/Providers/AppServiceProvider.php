@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Contracts\WhatsAppGateway;
 use App\Models\User;
+use App\Services\WhatsApp\FakeWhatsAppGateway;
 use App\Support\PermissionCatalog;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -27,5 +29,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::before(function (User $user, string $ability): ?bool {
             return PermissionCatalog::allows($user->role?->name, $ability) ? true : null;
         });
+
+        // Provider adapters are injectable; the real WhatsApp adapter can be
+        // bound here later without touching business code.
+        $this->app->singleton(WhatsAppGateway::class, FakeWhatsAppGateway::class);
     }
 }
