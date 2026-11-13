@@ -8,14 +8,18 @@ use App\Http\Requests\Api\UpdatePartnerRequest;
 use App\Http\Resources\PartnerResource;
 use App\Models\Mitra;
 use App\Support\ApiResponse;
+use App\Support\AuditLogger;
 use App\Support\TenantContext;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class PartnerController extends Controller
 {
+    public function __construct(private readonly AuditLogger $audit) {}
+
     public function index(Request $request): JsonResponse
     {
         Gate::authorize('partner.view');
@@ -66,9 +70,17 @@ class PartnerController extends Controller
     {
         Gate::authorize('partner.create');
 
-        $mitra = Mitra::create($request->validated() + [
-            'kode_mitra' => 'MT-'.Str::upper(Str::random(8)),
-        ]);
+        $mitra = DB::transaction(function () use ($request): Mitra {
+            $mitra = Mitra::create($request->validated() + [
+                'kode_mitra' => 'MT-'.Str::upper(Str::random(8)),
+            ]);
+
+            $this->audit->log($request->user(), 'partner.create', 'partner', 'Partner created', [
+                'partner_id' => $mitra->id,
+            ], $request);
+
+            return $mitra;
+        });
 
         return ApiResponse::ok(
             (new PartnerResource($mitra))->resolve(),
@@ -83,7 +95,14 @@ class PartnerController extends Controller
 
         Gate::authorize('update', $mitra);
 
-        $mitra->update($request->validated());
+        DB::transaction(function () use ($request, $mitra): void {
+            $mitra->update($request->validated());
+
+            $this->audit->log($request->user(), 'partner.update', 'partner', 'Partner updated', [
+                'partner_id' => $mitra->id,
+                'changes' => array_keys($request->validated()),
+            ], $request);
+        });
 
         return ApiResponse::ok(
             (new PartnerResource($mitra))->resolve(),

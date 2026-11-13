@@ -111,6 +111,35 @@ class BusinessTenantIsolationTest extends TestCase
         $this->assertSame($this->partnerB->id, $customer->fresh()->mitra_id);
     }
 
+    public function test_explicit_transfer_endpoint_is_central_only_and_audited(): void
+    {
+        $admin = User::factory()->withRole('admin')->create();
+        $customer = $this->customer($this->partnerA);
+
+        $this->actingAs($admin)
+            ->postJson('/api/v1/customers/'.$customer->id.'/transfer', [
+                'partner_id' => $this->partnerB->id,
+                'reason' => 'Pindah wilayah layanan',
+            ])
+            ->assertStatus(200)
+            ->assertJsonPath('data.partner_id', $this->partnerB->id);
+
+        $this->assertDatabaseHas('activity_logs', [
+            'aksi' => 'customer.transfer',
+            'modul' => 'customer',
+        ]);
+
+        $partnerUser = User::factory()->withRole('mitra')->forMitra($this->partnerA)->create();
+        $other = $this->customer($this->partnerA);
+
+        $this->actingAs($partnerUser)
+            ->postJson('/api/v1/customers/'.$other->id.'/transfer', [
+                'partner_id' => $this->partnerB->id,
+                'reason' => 'Tidak berhak',
+            ])
+            ->assertStatus(403);
+    }
+
     public function test_partner_cannot_create_partner(): void
     {
         $user = User::factory()->withRole('mitra')->forMitra($this->partnerA)->create();

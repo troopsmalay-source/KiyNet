@@ -8,14 +8,19 @@ use App\Http\Requests\Api\UpdateCustomerRequest;
 use App\Http\Resources\CustomerResource;
 use App\Models\Pelanggan;
 use App\Support\ApiResponse;
+use App\Support\AuditLogger;
 use App\Support\TenantContext;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 class CustomerController extends Controller
 {
+    public function __construct(private readonly AuditLogger $audit) {}
+
     public function index(Request $request): JsonResponse
     {
         Gate::authorize('customer.view');
@@ -66,7 +71,16 @@ class CustomerController extends Controller
         $data['kode_pelanggan'] = 'KN-'.now()->format('ym').'-'.Str::upper(Str::random(6));
         $data['status'] ??= 'calon';
 
-        $pelanggan = Pelanggan::create($data);
+        $pelanggan = DB::transaction(function () use ($request, $data): Pelanggan {
+            $pelanggan = Pelanggan::create($data);
+
+            $this->audit->log($request->user(), 'customer.create', 'customer', 'Customer created', [
+                'customer_id' => $pelanggan->id,
+                'partner_id' => $pelanggan->mitra_id,
+            ], $request);
+
+            return $pelanggan;
+        });
 
         return ApiResponse::ok(
             (new CustomerResource($pelanggan))->resolve(),
@@ -90,10 +104,56 @@ class CustomerController extends Controller
             unset($data['mitra_id']);
         }
 
-        $pelanggan->update($data);
+        DB::transaction(function () use ($request, $pelanggan, $data): void {
+            $pelanggan->update($data);
+
+            $this->audit->log($request->user(), 'customer.update', 'customer', 'Customer updated', [
+                'customer_id' => $pelanggan->id,
+                'changes' => array_keys($data),
+            ], $request);
+        });
 
         return ApiResponse::ok(
             (new CustomerResource($pelanggan))->resolve(),
+            200,
+            $request->header('X-Request-ID', ''),
+        );
+    }
+
+    public function transfer(Request $request, int $customer): JsonResponse
+    {
+        Gate::authorize('customer.transfer');
+
+        if (! TenantContext::isCentral($request->user())) {
+            abort(403);
+        }
+
+        $pelanggan = Pelanggan::query()->findOrFail($customer);
+
+        $data = $request->validate([
+            'partner_id' => ['required', 'integer', 'exists:mitra,id'],
+            'reason' => ['required', 'string', 'max:255'],
+        ]);
+
+        if ((int) $pelanggan->mitra_id === (int) $data['partner_id']) {
+            throw new ConflictHttpException('Customer already belongs to this partner.');
+        }
+
+        $fromPartnerId = $pelanggan->mitra_id;
+
+        DB::transaction(function () use ($request, $pelanggan, $data, $fromPartnerId): void {
+            $pelanggan->update(['mitra_id' => $data['partner_id']]);
+
+            $this->audit->log($request->user(), 'customer.transfer', 'customer', 'Customer ownership transferred', [
+                'customer_id' => $pelanggan->id,
+                'from_partner_id' => $fromPartnerId,
+                'to_partner_id' => $data['partner_id'],
+                'reason' => $data['reason'],
+            ], $request);
+        });
+
+        return ApiResponse::ok(
+            (new CustomerResource($pelanggan->fresh()))->resolve(),
             200,
             $request->header('X-Request-ID', ''),
         );
