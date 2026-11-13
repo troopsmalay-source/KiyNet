@@ -1,0 +1,39 @@
+# KikiNet — partner aggregate bandwidth cap (TEMPLATE)
+#
+# LAB ONLY. This is a starting design to be measured, not a proven configuration.
+# Goal: per-partner aggregate limit independent from per-customer speed.
+#
+# Assumptions to verify on the target RouterOS model/version:
+#   - PPPoE traffic passes the forward chain and can be marked per partner;
+#   - FastTrack does NOT bypass the queue (or is disabled for partner traffic);
+#   - interface queue type / hardware offload does not skip the queue tree;
+#   - CPU can sustain the measured aggregate at line rate.
+#
+# Partner identity is derived server-side from the subscription projection.
+# NEVER mark traffic from a username prefix alone.
+
+# 1. Address list per partner (populated from the DB projection, not by hand)
+/ip firewall address-list
+add list=partner-__PARTNER_ID__ address=__CUSTOMER_SUBNET__ comment="KikiNet partner __PARTNER_ID__"
+
+# 2. Mark partner traffic
+/ip firewall mangle
+add chain=forward src-address-list=partner-__PARTNER_ID__ action=mark-packet \
+    new-packet-mark=partner-__PARTNER_ID__-up passthrough=no comment="KikiNet partner up"
+add chain=forward dst-address-list=partner-__PARTNER_ID__ action=mark-packet \
+    new-packet-mark=partner-__PARTNER_ID__-down passthrough=no comment="KikiNet partner down"
+
+# 3. Partner queue tree (aggregate cap from the wholesale contract)
+/queue tree
+add name=partner-__PARTNER_ID__-down parent=__WAN_PARENT__ packet-mark=partner-__PARTNER_ID__-down \
+    max-limit=__CAP_DOWN_MBPS__M comment="KikiNet aggregate cap down"
+add name=partner-__PARTNER_ID__-up parent=__LAN_PARENT__ packet-mark=partner-__PARTNER_ID__-up \
+    max-limit=__CAP_UP_MBPS__M comment="KikiNet aggregate cap up"
+
+# 4. Measurement checklist (attach results to the PR)
+# - sum of per-customer rates > cap => aggregate stays at cap, with drops
+# - partner A traffic never enters partner B queue (isolation test)
+# - per-customer Mikrotik-Rate-Limit still correct in both directions
+# - FastTrack enabled vs disabled
+# - router CPU at cap; interface errors/drops
+# - sampled /queue tree print interval matches the DB sample interval

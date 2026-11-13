@@ -1,0 +1,62 @@
+# KikiNet — FreeRADIUS 3.2.x SQL module (TEMPLATE)
+#
+# This is a 3.2.x-style module. FreeRADIUS 4.x uses a different configuration
+# model; if the team pins 4.x, author a separate 4.x template and do not mix.
+#
+# Copy to /etc/freeradius/3.0/mods-available/sql and symlink into mods-enabled.
+# Credentials come from the secret manager / environment, never from Git.
+
+sql {
+    dialect = "postgresql"
+    driver  = "rlm_sql_postgresql"
+
+    server   = __RADIUS_DB_HOST__
+    port     = 5432
+    login    = "radiusd"
+    password = "__RADIUSD_DB_PASSWORD_FROM_SECRET_MANAGER__"
+
+    radius_db = "kikinet_radius"
+
+    # Read/authorize groups; user/group lookups use the vendor queries that ship
+    # with the pinned FreeRADIUS version. Do not edit them without lab evidence.
+    read_clients = yes
+    client_table = "nas"
+
+    table {
+        nas       = "nas"
+        radacct   = "radacct"
+        radcheck  = "radcheck"
+        radreply  = "radreply"
+        radgroupcheck = "radgroupcheck"
+        radgroupreply = "radgroupreply"
+        radusergroup  = "radusergroup"
+        radpostauth   = "radpostauth"
+    }
+
+    group_attribute = "SQL-Group"
+
+    # Accounting: Start/Interim/Stop rows are written by FreeRADIUS.
+    # KikiNet reads them via the read-only analytics role and normalizes them
+    # in radius_accounting_samples (never sums cumulative rows).
+    accounting {
+        reference = "%{tolower:type.%{%{Acct-Status-Type}:-none}.query}"
+        column {
+            op = "="
+        }
+    }
+
+    post-auth {
+        reference = "."
+        query     = "${..postauth_table}"
+    }
+
+    pool {
+        start = 5
+        min   = 4
+        max   = 10
+        spare = 3
+        uses  = 0
+        lifetime = 0
+        idle_timeout = 60
+    }
+}

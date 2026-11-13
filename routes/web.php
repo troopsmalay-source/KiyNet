@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CstInternalController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LanggananController;
 use App\Http\Controllers\Admin\MitraController;
+use App\Http\Controllers\Admin\NetworkWidgetController;
 use App\Http\Controllers\Admin\PackageServiceController;
 use App\Http\Controllers\Admin\PaketInternetController;
 use App\Http\Controllers\Admin\PelangganController;
@@ -54,10 +55,12 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
         Route::get('tagihan/{tagihan}', [TagihanController::class, 'show'])->name('tagihan.show');
         Route::post('tagihan/{tagihan}/pembayaran', [TagihanController::class, 'storePayment'])->name('tagihan.pembayaran.store');
         Route::get('pengingat-tagihan', [PengingatTagihanController::class, 'index'])->name('pengingat.index');
+        Route::get('network/widget', [NetworkWidgetController::class, 'widget'])->name('network.widget');
     });
 
     Route::middleware('role:super_admin,admin')->group(function () {
         Route::resource('mitra', MitraController::class)->except(['show', 'destroy']);
+        Route::get('mitra/{partner}/usage', [NetworkWidgetController::class, 'partnerUsageSummary'])->name('partner.usage');
         Route::resource('paket', PaketInternetController::class)->except(['show', 'destroy']);
 
         Route::get('packages', [PackageServiceController::class, 'index'])->name('packages.index');

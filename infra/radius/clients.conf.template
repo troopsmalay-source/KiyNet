@@ -1,0 +1,19 @@
+# KikiNet — FreeRADIUS clients (TEMPLATE, no real secrets)
+#
+# Copy to /etc/freeradius/3.0/clients.conf on the AAA node (or include it).
+# Shared secrets are injected by the configuration management/secret manager at
+# deploy time. NEVER commit a real secret, and keep one secret per NAS.
+
+client __NAS_01_IDENTIFIER__ {
+    ipaddr          = __NAS_01_PRIVATE_IP__
+    secret          = __NAS_01_SHARED_SECRET_FROM_SECRET_MANAGER__
+    require_message_authenticator = no   # verify per RouterOS version in lab
+    nas_type        = other
+    shortname       = __NAS_01_CODE__
+}
+
+# Duplicate the block for NAS 02, 03, ... Each NAS must:
+#  - have a unique secret (rotation is per device),
+#  - be reachable from a private/VPN management network only,
+#  - be recorded in nas_devices with radius_secret_reference (vault path),
+#  - send accounting with a stable Acct-Interim-Interval.

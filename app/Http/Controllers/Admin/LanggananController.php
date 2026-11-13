@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Langganan;
+use App\Domain\Network\Services\SubscriptionNetworkSync;
 use App\Models\PaketInternet;
 use App\Models\Pelanggan;
 use App\Support\DataTableResponse;
@@ -101,7 +102,11 @@ class LanggananController extends Controller
         $data['hari_aktivasi'] = Carbon::parse($data['tanggal_aktivasi'])->day;
         $data['harga_snapshot'] = $package->harga;
 
-        Langganan::create($data);
+        $langganan = Langganan::create($data);
+
+        if ($langganan->status === 'aktif') {
+            app(SubscriptionNetworkSync::class)->activate($langganan);
+        }
 
         return redirect()->route('admin.langganan.index')->with('success', 'Langganan berhasil ditambahkan.');
     }
@@ -144,7 +149,19 @@ class LanggananController extends Controller
             $data['harga_snapshot'] = PaketInternet::findOrFail($data['paket_internet_id'])->harga;
         }
 
+        $sync = app(SubscriptionNetworkSync::class);
+        $oldStatus = $langganan->status;
+        $oldPackage = $langganan->paket_internet_id;
+
         $langganan->update($data);
+
+        if ($langganan->status === 'aktif' && $oldStatus !== 'aktif') {
+            $sync->activate($langganan);
+        } elseif ($langganan->status === 'aktif' && $oldStatus === 'aktif' && (int) $langganan->paket_internet_id !== $oldPackage) {
+            $sync->changePackage($langganan);
+        } elseif ($langganan->status === 'ditangguhkan') {
+            $sync->suspend($langganan);
+        }
 
         return redirect()->route('admin.langganan.index')->with('success', 'Data langganan diperbarui.');
     }

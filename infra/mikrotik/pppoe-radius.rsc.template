@@ -1,0 +1,47 @@
+# KikiNet — RouterOS PPPoE + RADIUS (TEMPLATE, placeholders only)
+#
+# Apply on a LAB router only, after exporting the current config.
+# Replace __PLACEHOLDERS__ from the deployment record; never commit real secrets.
+# Verify every line against the target RouterOS version before production.
+
+# --- 1. AAA servers (private network only) ---
+/radius
+add service=ppp address=__RADIUS_PRIMARY_IP__ secret=__NAS_SHARED_SECRET__ \
+    authentication-port=1812 accounting-port=1813 timeout=3s comment="KikiNet AAA primary"
+add service=ppp address=__RADIUS_SECONDARY_IP__ secret=__NAS_SHARED_SECRET__ \
+    authentication-port=1812 accounting-port=1813 timeout=3s comment="KikiNet AAA secondary"
+
+# Use RADIUS for PPP auth/accounting; keep local secrets only during controlled cutover.
+/ppp aaa
+set use-radius=yes accounting=yes interim-update=5m
+
+# --- 2. PPP profile delivery of the speed policy ---
+# Per-customer rate comes from the RADIUS reply attribute Mikrotik-Rate-Limit.
+# rx = customer upload, tx = customer download (verify direction in lab).
+/ppp profile
+add name=__PPPOE_PROFILE_NAME__ local-address=__NAS_GATEWAY_IP__ \
+    remote-address=__PPPOE_POOL_NAME__ dns-server=__DNS_1__,__DNS_2__ \
+    only-one=yes comment="KikiNet central profile"
+
+# --- 3. Access concentrator ---
+/interface pppoe-server server
+add service-name=__PPPOE_SERVICE_NAME__ interface=__UPLINK_INTERFACE__ \
+    default-profile=__PPPOE_PROFILE_NAME__ authentication=pap,chap,mschap2 \
+    disabled=no comment="KikiNet PPPoE"
+
+# --- 4. Management hardening ---
+# API must be reachable only from the central management service IP.
+/ip service
+set api disabled=no address=__MGMT_SERVICE_IP__/32
+set api-ssl disabled=yes address=__MGMT_SERVICE_IP__/32
+set winbox disabled=yes
+set ssh disabled=yes address=__MGMT_SERVICE_IP__/32
+set www disabled=yes
+set telnet disabled=yes
+
+# --- 5. Verification (lab evidence for the PR) ---
+# /radius print
+# /ppp aaa print
+# /ppp active print detail
+# /log print where topics~"radius"
+# /tool fetch url="https://__RADIUS_PROBE__"  (or use RouterOS logging)
