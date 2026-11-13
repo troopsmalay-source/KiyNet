@@ -1,0 +1,9 @@
+flowchart LR
+  A[Agent A: Foundation + Business] --> C[Shared Contracts]
+  B[Agent B: Network + RADIUS] --> C
+  C --> API[API / DTO / Events / Outbox]
+  A --> BD[(Business Data Source of Truth)]
+  B --> ND[(Network Projection + Accounting)]
+  BD -->|Outbox Commands| API
+  API -->|Versioned Policy Commands| ND
+  ND -->|Status and Usage Read Models| API

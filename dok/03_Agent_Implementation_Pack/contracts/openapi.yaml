@@ -1,0 +1,735 @@
+openapi: 3.1.0
+info:
+  title: KikiNet API
+  version: 1.0.0
+  description: >-
+    Contract-first API for KikiNet ISP Billing and Partner Management.
+    Tenant authorization is derived server-side from the authenticated principal.
+servers:
+  - url: https://api.example.invalid/api/v1
+    description: Replace with deployment API base URL.
+security:
+  - SanctumBearer: []
+tags:
+  - name: Identity
+  - name: Partners
+  - name: Customers
+  - name: Catalog
+  - name: Subscriptions
+  - name: Billing
+  - name: Payments
+  - name: Public Invoice
+  - name: Network
+  - name: Tax
+  - name: Webhooks
+paths:
+  /me:
+    get:
+      tags: [Identity]
+      summary: Current authenticated user and effective permissions
+      responses:
+        '200':
+          description: Current user
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/MeEnvelope'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /partners:
+    get:
+      tags: [Partners]
+      summary: List partners (central all, partner own scope only)
+      parameters:
+        - {$ref: '#/components/parameters/Page'}
+        - {$ref: '#/components/parameters/PerPage'}
+        - name: status
+          in: query
+          schema: {type: string}
+      responses:
+        '200': {$ref: '#/components/responses/PartnerList'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+    post:
+      tags: [Partners]
+      summary: Create partner (central only)
+      security: [{SanctumBearer: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/PartnerCreate'}
+      responses:
+        '201': {$ref: '#/components/responses/Partner'}
+        '422': {$ref: '#/components/responses/ValidationError'}
+  /partners/{partnerId}:
+    parameters:
+      - {$ref: '#/components/parameters/PartnerId'}
+    get:
+      tags: [Partners]
+      summary: Get partner visible to caller
+      responses:
+        '200': {$ref: '#/components/responses/Partner'}
+        '404': {$ref: '#/components/responses/NotFound'}
+    patch:
+      tags: [Partners]
+      summary: Update partner profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/PartnerUpdate'}
+      responses:
+        '200': {$ref: '#/components/responses/Partner'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/ValidationError'}
+  /customers:
+    get:
+      tags: [Customers]
+      summary: List customers with mandatory server-side tenant scope
+      parameters:
+        - {$ref: '#/components/parameters/Page'}
+        - {$ref: '#/components/parameters/PerPage'}
+        - {name: search, in: query, schema: {type: string, maxLength: 100}}
+        - {name: status, in: query, schema: {type: string}}
+      responses:
+        '200': {$ref: '#/components/responses/CustomerList'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+    post:
+      tags: [Customers]
+      summary: Create customer; partner_id is not tenant authority
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/CustomerCreate'}
+      responses:
+        '201': {$ref: '#/components/responses/Customer'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '422': {$ref: '#/components/responses/ValidationError'}
+  /customers/{customerId}:
+    parameters:
+      - {$ref: '#/components/parameters/CustomerId'}
+    get:
+      tags: [Customers]
+      summary: Get customer within caller's authorized tenant scope
+      responses:
+        '200': {$ref: '#/components/responses/Customer'}
+        '404': {$ref: '#/components/responses/NotFound'}
+    patch:
+      tags: [Customers]
+      summary: Update customer fields allowed to caller
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/CustomerUpdate'}
+      responses:
+        '200': {$ref: '#/components/responses/Customer'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '422': {$ref: '#/components/responses/ValidationError'}
+  /internet-packages:
+    get:
+      tags: [Catalog]
+      summary: List active packages visible to caller
+      responses:
+        '200': {$ref: '#/components/responses/PackageList'}
+    post:
+      tags: [Catalog]
+      summary: Create package (central permission only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/PackageWrite'}
+      responses:
+        '201': {$ref: '#/components/responses/Package'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /subscriptions:
+    get:
+      tags: [Subscriptions]
+      summary: List subscriptions with tenant scope
+      parameters:
+        - {$ref: '#/components/parameters/Page'}
+        - {$ref: '#/components/parameters/PerPage'}
+      responses:
+        '200': {$ref: '#/components/responses/SubscriptionList'}
+    post:
+      tags: [Subscriptions]
+      summary: Create subscription
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/SubscriptionCreate'}
+      responses:
+        '201': {$ref: '#/components/responses/Subscription'}
+        '422': {$ref: '#/components/responses/ValidationError'}
+  /subscriptions/{subscriptionId}/suspend:
+    parameters:
+      - {$ref: '#/components/parameters/SubscriptionId'}
+    post:
+      tags: [Subscriptions]
+      summary: Suspend subscription and enqueue network policy change
+      parameters:
+        - {$ref: '#/components/parameters/IdempotencyKey'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/SubscriptionAction'}
+      responses:
+        '202': {$ref: '#/components/responses/NetworkCommandAccepted'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationError'}
+  /subscriptions/{subscriptionId}/restore:
+    parameters:
+      - {$ref: '#/components/parameters/SubscriptionId'}
+    post:
+      tags: [Subscriptions]
+      summary: Restore subscription after verified payment and policy checks
+      parameters:
+        - {$ref: '#/components/parameters/IdempotencyKey'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/SubscriptionAction'}
+      responses:
+        '202': {$ref: '#/components/responses/NetworkCommandAccepted'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /invoices:
+    get:
+      tags: [Billing]
+      summary: List invoices in authorized scope
+      parameters:
+        - {$ref: '#/components/parameters/Page'}
+        - {$ref: '#/components/parameters/PerPage'}
+        - {name: status, in: query, schema: {type: string}}
+      responses:
+        '200': {$ref: '#/components/responses/InvoiceList'}
+    post:
+      tags: [Billing]
+      summary: Generate invoice idempotently
+      parameters:
+        - {$ref: '#/components/parameters/IdempotencyKey'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/InvoiceGenerate'}
+      responses:
+        '201': {$ref: '#/components/responses/Invoice'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '422': {$ref: '#/components/responses/ValidationError'}
+  /invoices/{invoiceId}:
+    parameters:
+      - {$ref: '#/components/parameters/InvoiceId'}
+    get:
+      tags: [Billing]
+      summary: Get invoice in caller's scope
+      responses:
+        '200': {$ref: '#/components/responses/Invoice'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /invoices/{invoiceId}/payment-intents:
+    parameters:
+      - {$ref: '#/components/parameters/InvoiceId'}
+    post:
+      tags: [Payments]
+      summary: Create payment intent with provider
+      parameters:
+        - {$ref: '#/components/parameters/IdempotencyKey'}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/PaymentIntentCreate'}
+      responses:
+        '201': {$ref: '#/components/responses/PaymentIntent'}
+        '409': {$ref: '#/components/responses/Conflict'}
+        '502': {$ref: '#/components/responses/IntegrationUnavailable'}
+  /public/invoices/{token}:
+    get:
+      tags: [Public Invoice]
+      security: []
+      summary: Read limited invoice projection using unguessable token
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema: {type: string, minLength: 40, maxLength: 200}
+      responses:
+        '200': {$ref: '#/components/responses/PublicInvoice'}
+        '404': {$ref: '#/components/responses/NotFound'}
+        '429': {$ref: '#/components/responses/RateLimited'}
+  /webhooks/payments/{provider}:
+    post:
+      tags: [Webhooks]
+      security: []
+      summary: Receive payment provider event; signature required by provider adapter
+      parameters:
+        - {name: provider, in: path, required: true, schema: {type: string}}
+        - {name: X-Provider-Signature, in: header, required: true, schema: {type: string}}
+        - {name: X-Provider-Event-Id, in: header, required: true, schema: {type: string}}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {type: object, additionalProperties: true}
+      responses:
+        '202':
+          description: Event accepted for idempotent asynchronous processing
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/AcceptedEnvelope'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /network/sessions:
+    get:
+      tags: [Network]
+      summary: List RADIUS sessions; partner view restricted to own customer sessions
+      parameters:
+        - {$ref: '#/components/parameters/Page'}
+        - {$ref: '#/components/parameters/PerPage'}
+        - {name: active, in: query, schema: {type: boolean}}
+        - {name: customer_id, in: query, schema: {type: string}}
+      responses:
+        '200': {$ref: '#/components/responses/SessionList'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /network/sessions/{sessionId}/disconnect:
+    parameters:
+      - {name: sessionId, in: path, required: true, schema: {type: string}}
+    post:
+      tags: [Network]
+      summary: Disconnect a PPPoE session (central network permission only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/NetworkDisconnect'}
+      responses:
+        '202': {$ref: '#/components/responses/NetworkCommandAccepted'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+        '409': {$ref: '#/components/responses/Conflict'}
+  /network/customers/{customerId}/usage:
+    parameters:
+      - {$ref: '#/components/parameters/CustomerId'}
+    get:
+      tags: [Network]
+      summary: Customer usage from deduplicated RADIUS accounting deltas
+      parameters:
+        - {name: from, in: query, required: true, schema: {type: string, format: date}}
+        - {name: to, in: query, required: true, schema: {type: string, format: date}}
+      responses:
+        '200': {$ref: '#/components/responses/Usage'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /network/partners/{partnerId}/usage:
+    parameters:
+      - {$ref: '#/components/parameters/PartnerId'}
+    get:
+      tags: [Network]
+      summary: Partner usage aggregation; own partner only for partner roles
+      parameters:
+        - {name: from, in: query, required: true, schema: {type: string, format: date}}
+        - {name: to, in: query, required: true, schema: {type: string, format: date}}
+      responses:
+        '200': {$ref: '#/components/responses/Usage'}
+        '404': {$ref: '#/components/responses/NotFound'}
+  /network/sync-commands:
+    get:
+      tags: [Network]
+      summary: Central network operators inspect outbox synchronization status
+      parameters:
+        - {$ref: '#/components/parameters/Page'}
+        - {name: status, in: query, schema: {type: string}}
+      responses:
+        '200':
+          description: Sync command list
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/SyncCommandListEnvelope'}
+        '403': {$ref: '#/components/responses/Forbidden'}
+  /tax/submissions:
+    get:
+      tags: [Tax]
+      summary: List tax submissions in authorized partner/central scope
+      parameters:
+        - {$ref: '#/components/parameters/Page'}
+        - {$ref: '#/components/parameters/PerPage'}
+      responses:
+        '200': {$ref: '#/components/responses/TaxSubmissionList'}
+    post:
+      tags: [Tax]
+      summary: Create draft tax submission for own entity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/TaxSubmissionCreate'}
+      responses:
+        '201': {$ref: '#/components/responses/TaxSubmission'}
+        '422': {$ref: '#/components/responses/ValidationError'}
+components:
+  securitySchemes:
+    SanctumBearer:
+      type: http
+      scheme: bearer
+      bearerFormat: Sanctum token
+  parameters:
+    Page:
+      name: page
+      in: query
+      schema: {type: integer, minimum: 1, default: 1}
+    PerPage:
+      name: per_page
+      in: query
+      schema: {type: integer, minimum: 1, maximum: 100, default: 25}
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema: {type: string, minLength: 16, maxLength: 128}
+    PartnerId:
+      name: partnerId
+      in: path
+      required: true
+      schema: {type: string}
+    CustomerId:
+      name: customerId
+      in: path
+      required: true
+      schema: {type: string}
+    SubscriptionId:
+      name: subscriptionId
+      in: path
+      required: true
+      schema: {type: string}
+    InvoiceId:
+      name: invoiceId
+      in: path
+      required: true
+      schema: {type: string}
+  schemas:
+    Meta:
+      type: object
+      properties:
+        request_id: {type: string}
+        timestamp: {type: string, format: date-time}
+        page: {type: integer}
+        per_page: {type: integer}
+        total: {type: integer}
+        last_page: {type: integer}
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      required: [error, meta]
+      properties:
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: {type: string}
+            message: {type: string}
+            details: {type: object, additionalProperties: true}
+        meta: {$ref: '#/components/schemas/Meta'}
+    Partner:
+      type: object
+      required: [id, code, display_name, status]
+      properties:
+        id: {type: string}
+        code: {type: string}
+        display_name: {type: string}
+        legal_name: {type: [string, 'null']}
+        status: {type: string, enum: [draft, pending, active, suspended, terminated]}
+    PartnerCreate:
+      type: object
+      required: [code, display_name]
+      properties:
+        code: {type: string, maxLength: 40}
+        display_name: {type: string, maxLength: 150}
+        legal_name: {type: [string, 'null']}
+        email: {type: [string, 'null'], format: email}
+        phone: {type: [string, 'null']}
+    PartnerUpdate:
+      type: object
+      properties:
+        display_name: {type: string, maxLength: 150}
+        email: {type: [string, 'null'], format: email}
+        phone: {type: [string, 'null']}
+    Customer:
+      type: object
+      required: [id, customer_code, full_name, status]
+      properties:
+        id: {type: string}
+        customer_code: {type: string}
+        partner_id: {type: [string, 'null'], readOnly: true}
+        full_name: {type: string}
+        phone: {type: [string, 'null']}
+        status: {type: string}
+    CustomerCreate:
+      type: object
+      required: [customer_code, full_name]
+      properties:
+        customer_code: {type: string}
+        full_name: {type: string, maxLength: 150}
+        phone: {type: [string, 'null']}
+        email: {type: [string, 'null'], format: email}
+        service_address_text: {type: [string, 'null']}
+        partner_id: {type: string, deprecated: true, description: Ignored/rejected for partner users; tenant resolved from authenticated principal.}
+    CustomerUpdate:
+      type: object
+      properties:
+        full_name: {type: string, maxLength: 150}
+        phone: {type: [string, 'null']}
+        email: {type: [string, 'null'], format: email}
+        service_address_text: {type: [string, 'null']}
+    Package:
+      type: object
+      required: [id, code, name, download_mbps, upload_mbps, price_idr]
+      properties:
+        id: {type: string}
+        code: {type: string}
+        name: {type: string}
+        download_mbps: {type: number, minimum: 0}
+        upload_mbps: {type: number, minimum: 0}
+        price_idr: {type: integer, minimum: 0}
+    PackageWrite:
+      type: object
+      required: [code, name, download_mbps, upload_mbps, price_idr]
+      properties:
+        code: {type: string}
+        name: {type: string}
+        download_mbps: {type: number, exclusiveMinimum: 0}
+        upload_mbps: {type: number, exclusiveMinimum: 0}
+        price_idr: {type: integer, minimum: 0}
+    Subscription:
+      type: object
+      properties:
+        id: {type: string}
+        customer_id: {type: string}
+        package_id: {type: string}
+        status: {type: string, enum: [draft, pending, active, grace, isolated, suspended, terminated, cancelled]}
+        current_policy_version: {type: integer}
+    SubscriptionCreate:
+      type: object
+      required: [customer_id, package_id, pppoe_username, start_date]
+      properties:
+        customer_id: {type: string}
+        package_id: {type: string}
+        pppoe_username: {type: string, maxLength: 80}
+        start_date: {type: string, format: date}
+        billing_day: {type: integer, minimum: 1, maximum: 28}
+    SubscriptionAction:
+      type: object
+      required: [reason_code]
+      properties:
+        reason_code: {type: string}
+        reason_note: {type: [string, 'null'], maxLength: 500}
+        effective_at: {type: [string, 'null'], format: date-time}
+    Invoice:
+      type: object
+      required: [id, invoice_no, status, grand_total_idr, due_at]
+      properties:
+        id: {type: string}
+        invoice_no: {type: string}
+        status: {type: string}
+        subtotal_idr: {type: integer}
+        tax_total_idr: {type: integer}
+        grand_total_idr: {type: integer}
+        due_at: {type: string, format: date-time}
+    InvoiceGenerate:
+      type: object
+      required: [subscription_id, period_start, period_end]
+      properties:
+        subscription_id: {type: string}
+        period_start: {type: string, format: date}
+        period_end: {type: string, format: date}
+    PaymentIntentCreate:
+      type: object
+      required: [payment_method]
+      properties:
+        payment_method: {type: string}
+        return_url: {type: string, format: uri}
+    PaymentIntent:
+      type: object
+      properties:
+        payment_id: {type: string}
+        status: {type: string, enum: [pending, succeeded, failed, expired]}
+        checkout_url: {type: [string, 'null'], format: uri}
+        expires_at: {type: [string, 'null'], format: date-time}
+    PublicInvoice:
+      type: object
+      properties:
+        invoice_no: {type: string}
+        customer_name_masked: {type: string}
+        period_start: {type: string, format: date}
+        period_end: {type: string, format: date}
+        grand_total_idr: {type: integer}
+        due_at: {type: string, format: date-time}
+        status: {type: string}
+        payment_instructions: {type: array, items: {type: string}}
+      additionalProperties: false
+    NetworkDisconnect:
+      type: object
+      required: [reason_code]
+      properties:
+        reason_code: {type: string}
+        reason_note: {type: [string, 'null']}
+    NetworkCommandAccepted:
+      type: object
+      properties:
+        command_id: {type: string}
+        desired_state: {type: string}
+        sync_status: {type: string, enum: [pending, processing, succeeded, failed, dead_letter]}
+    Usage:
+      type: object
+      properties:
+        scope_type: {type: string, enum: [customer, partner]}
+        scope_id: {type: string}
+        from: {type: string, format: date}
+        to: {type: string, format: date}
+        upload_bytes: {type: integer, minimum: 0}
+        download_bytes: {type: integer, minimum: 0}
+        total_bytes: {type: integer, minimum: 0}
+        peak_download_mbps: {type: number, minimum: 0}
+        peak_upload_mbps: {type: number, minimum: 0}
+        completeness: {type: string, enum: [complete, estimated, gap]}
+    TaxSubmissionCreate:
+      type: object
+      required: [tax_category_code, period_id]
+      properties:
+        tax_category_code: {type: string, enum: [pph21, ppn, annual_komdigi]}
+        period_id: {type: string}
+        declared_base_idr: {type: integer, minimum: 0}
+        declared_tax_idr: {type: integer, minimum: 0}
+        reference_number: {type: [string, 'null']}
+    AcceptedEnvelope:
+      type: object
+      properties:
+        data: {type: object, additionalProperties: true}
+        meta: {$ref: '#/components/schemas/Meta'}
+    PartnerEnvelope:
+      type: object
+      properties:
+        data: {$ref: '#/components/schemas/Partner'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    PartnerListEnvelope:
+      type: object
+      properties:
+        data: {type: array, items: {$ref: '#/components/schemas/Partner'}}
+        meta: {$ref: '#/components/schemas/Meta'}
+    CustomerEnvelope:
+      type: object
+      properties:
+        data: {$ref: '#/components/schemas/Customer'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    CustomerListEnvelope:
+      type: object
+      properties:
+        data: {type: array, items: {$ref: '#/components/schemas/Customer'}}
+        meta: {$ref: '#/components/schemas/Meta'}
+    PackageEnvelope:
+      type: object
+      properties:
+        data: {$ref: '#/components/schemas/Package'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    PackageListEnvelope:
+      type: object
+      properties:
+        data: {type: array, items: {$ref: '#/components/schemas/Package'}}
+        meta: {$ref: '#/components/schemas/Meta'}
+    SubscriptionEnvelope:
+      type: object
+      properties:
+        data: {$ref: '#/components/schemas/Subscription'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    SubscriptionListEnvelope:
+      type: object
+      properties:
+        data: {type: array, items: {$ref: '#/components/schemas/Subscription'}}
+        meta: {$ref: '#/components/schemas/Meta'}
+    InvoiceEnvelope:
+      type: object
+      properties:
+        data: {$ref: '#/components/schemas/Invoice'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    InvoiceListEnvelope:
+      type: object
+      properties:
+        data: {type: array, items: {$ref: '#/components/schemas/Invoice'}}
+        meta: {$ref: '#/components/schemas/Meta'}
+    PaymentIntentEnvelope:
+      type: object
+      properties:
+        data: {$ref: '#/components/schemas/PaymentIntent'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    PublicInvoiceEnvelope:
+      type: object
+      properties:
+        data: {$ref: '#/components/schemas/PublicInvoice'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    NetworkCommandEnvelope:
+      type: object
+      properties:
+        data: {$ref: '#/components/schemas/NetworkCommandAccepted'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    SessionListEnvelope:
+      type: object
+      properties:
+        data: {type: array, items: {type: object, additionalProperties: true}}
+        meta: {$ref: '#/components/schemas/Meta'}
+    UsageEnvelope:
+      type: object
+      properties:
+        data: {$ref: '#/components/schemas/Usage'}
+        meta: {$ref: '#/components/schemas/Meta'}
+    SyncCommandListEnvelope:
+      type: object
+      properties:
+        data: {type: array, items: {type: object, additionalProperties: true}}
+        meta: {$ref: '#/components/schemas/Meta'}
+    TaxSubmissionEnvelope:
+      type: object
+      properties:
+        data: {type: object, additionalProperties: true}
+        meta: {$ref: '#/components/schemas/Meta'}
+    TaxSubmissionListEnvelope:
+      type: object
+      properties:
+        data: {type: array, items: {type: object, additionalProperties: true}}
+        meta: {$ref: '#/components/schemas/Meta'}
+    MeEnvelope:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id: {type: string}
+            name: {type: string}
+            roles: {type: array, items: {type: string}}
+            permissions: {type: array, items: {type: string}}
+            partner_id: {type: [string, 'null']}
+        meta: {$ref: '#/components/schemas/Meta'}
+  responses:
+    Partner: {description: Partner resource, content: {application/json: {schema: {$ref: '#/components/schemas/PartnerEnvelope'}}}}
+    PartnerList: {description: Partner list, content: {application/json: {schema: {$ref: '#/components/schemas/PartnerListEnvelope'}}}}
+    Customer: {description: Customer resource, content: {application/json: {schema: {$ref: '#/components/schemas/CustomerEnvelope'}}}}
+    CustomerList: {description: Customer list, content: {application/json: {schema: {$ref: '#/components/schemas/CustomerListEnvelope'}}}}
+    Package: {description: Package resource, content: {application/json: {schema: {$ref: '#/components/schemas/PackageEnvelope'}}}}
+    PackageList: {description: Package list, content: {application/json: {schema: {$ref: '#/components/schemas/PackageListEnvelope'}}}}
+    Subscription: {description: Subscription resource, content: {application/json: {schema: {$ref: '#/components/schemas/SubscriptionEnvelope'}}}}
+    SubscriptionList: {description: Subscription list, content: {application/json: {schema: {$ref: '#/components/schemas/SubscriptionListEnvelope'}}}}
+    Invoice: {description: Invoice resource, content: {application/json: {schema: {$ref: '#/components/schemas/InvoiceEnvelope'}}}}
+    InvoiceList: {description: Invoice list, content: {application/json: {schema: {$ref: '#/components/schemas/InvoiceListEnvelope'}}}}
+    PaymentIntent: {description: Payment intent, content: {application/json: {schema: {$ref: '#/components/schemas/PaymentIntentEnvelope'}}}}
+    PublicInvoice: {description: Limited public invoice, content: {application/json: {schema: {$ref: '#/components/schemas/PublicInvoiceEnvelope'}}}}
+    NetworkCommandAccepted: {description: Network command queued, content: {application/json: {schema: {$ref: '#/components/schemas/NetworkCommandEnvelope'}}}}
+    SessionList: {description: RADIUS session list, content: {application/json: {schema: {$ref: '#/components/schemas/SessionListEnvelope'}}}}
+    Usage: {description: Usage summary, content: {application/json: {schema: {$ref: '#/components/schemas/UsageEnvelope'}}}}
+    TaxSubmission: {description: Tax submission, content: {application/json: {schema: {$ref: '#/components/schemas/TaxSubmissionEnvelope'}}}}
+    TaxSubmissionList: {description: Tax submission list, content: {application/json: {schema: {$ref: '#/components/schemas/TaxSubmissionListEnvelope'}}}}
+    Unauthorized: {description: Authentication required, content: {application/json: {schema: {$ref: '#/components/schemas/ErrorEnvelope'}}}}
+    Forbidden: {description: Permission denied, content: {application/json: {schema: {$ref: '#/components/schemas/ErrorEnvelope'}}}}
+    NotFound: {description: Resource not found, content: {application/json: {schema: {$ref: '#/components/schemas/ErrorEnvelope'}}}}
+    Conflict: {description: Conflict or idempotency mismatch, content: {application/json: {schema: {$ref: '#/components/schemas/ErrorEnvelope'}}}}
+    ValidationError: {description: Validation failed, content: {application/json: {schema: {$ref: '#/components/schemas/ErrorEnvelope'}}}}
+    RateLimited: {description: Too many requests, content: {application/json: {schema: {$ref: '#/components/schemas/ErrorEnvelope'}}}}
+    IntegrationUnavailable: {description: Provider temporarily unavailable, content: {application/json: {schema: {$ref: '#/components/schemas/ErrorEnvelope'}}}}
